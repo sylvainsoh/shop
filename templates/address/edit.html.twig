@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Address{% endblock %}
+
+{% block body %}
+
+    {{ include("partials/title_section.html.twig", {'name':'Addresse'}) }}
+    <div class="login_register_wrap section">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-xl-6 col-md-10">
+                    <hr>
+                    <div class="login_wrap">
+                        <div class="padding_eight_all bg-white">
+                            <div class="heading_s1">
+                                <h3>Modification d'addresse</h3>
+                            </div>
+                            <div class="content">
+                                {{ include('address/_form.html.twig', {'button_label': 'Mettre à jour '}) }}
+                                <a class="btn btn-block btn-warning mt-2 text-white text-center" href="{{ path('app_account') }}">Retour au compte</a>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

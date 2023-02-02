@@ -19,9 +19,13 @@
                         <ul class="list-main">
                             <li><i class="ti-location-pin"></i> Store location</li>
                             <li><i class="ti-alarm-clock"></i> <a href="#">Daily deal</a></li>
-                            <li><i class="ti-user"></i> <a href="#">My account</a></li>
-                            <li><i class="ti-power-off"></i><a href="login.html#">Connexion</a></li>
-                            <li><i class="ti-mouse"></i><a href="{{ path('app_register') }}">Inscription</a></li>
+                            {% if app.user  %}
+                                <li><i class="ti-user"></i> <a href="{{ path("app_account")}}">Mon compte</a></li>
+                                <li><i class="ti-power-off"></i><a href="{{ path('app_logout') }}">Déconnexion</a></li>
+                            {% else %}
+                                <li><i class="ti-mouse"></i><a href="{{ path('app_login') }}">Connexion</a></li>
+                                <li><i class="ti-mouse"></i><a href="{{ path('app_register') }}">Inscription</a></li>
+                            {% endif %}
                         </ul>
                     </div>
                     <!-- End Top Right -->
