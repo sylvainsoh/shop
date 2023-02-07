@@ -1,0 +1,117 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Verifiez votre commmande {% endblock %}
+
+{% block scriptStripe %}
+    <script src="https://js.stripe.com/v3/"></script>
+{% endblock scriptStripe %}
+{% block body %}
+    {{ include( "partials/title_section.html.twig", {'name' :'Verification de votre commande'}) }}
+
+        <div class="container">
+            <hr>
+            <div class="row">
+                    <div class="col-lg-12">
+                        <h4>Verifiez l' addresse de livraison</h4>
+                        <div class="content" >
+                           <div class="breadcrumb">
+                               {{ address  | raw}}
+                           </div> &nbsp;
+                            <a href="{{ path('app_address_edit', {'id' : address.id}) }}">
+                                <i class="fa fa-pencil"></i>
+                                Modifier
+                            </a>
+                            <a href="{{ path('app_checkout') }}">
+                                <i class="fa fa-refresh"></i>
+                                Changer
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-lg-12">
+                        <h4>Vérifiez le service de livraison</h4>
+                        <div class="breadcrumb">
+                            {{ carrier | raw }}
+                        </div>
+                        <a href="{{ path('app_checkout') }}">
+                            <i class="fa fa-refresh"></i>
+                            Changer le livreur
+                        </a>
+                    </div>
+                {% if information  %}
+                    <div class="col-lg-12">
+                        <h4>Vérifiez les informations complémentaires</h4>
+                        <div class="breadcrumb">
+                            {{ information }}
+                        </div>
+                    </div>
+                {% endif %}
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="order_review">
+                        <div class="heading_s1">
+                            <h4>Vos articles</h4>
+                        </div>
+                        <div class="table-responsive order_table">
+                            <table class="table">
+                                <thead>
+                                <tr>
+                                    <th>Article</th>
+                                    <th>Total</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                              {% for element in cart.products %}
+                                  <tr>
+                                      <td>
+                                          {{ element.product.neame }}
+                                          <span class="product-qty">
+                                              x {{ element.quantity }}
+                                          </span>
+                                      </td>
+                                      <td>
+                                          {{ element.product.price }} Frs CFA
+                                      </td>
+                                  </tr>
+                              {% endfor  %}
+                                </tbody>
+                                <tfoot>
+                                <tr>
+                                    <th>Sous total</th>
+                                    <td class="product-subtotal"> {{ cart.data.subTotal }} Frs CFA</td>
+                                </tr>
+                                <tr>
+                                    <th>Taxe</th>
+                                    <td class="product-subtotal">0 %</td>
+                                </tr>
+                                <tr>
+                                    <th>Livraison par ({{ carrier.name }})</th>
+                                    <td class="product-subtotal">{{ carrier.price }} Frs CFA</td>
+                                </tr>
+                                <tr>
+                                    <th>Total</th>
+                                    <td class="product-subtotal"> {{ cart.data.subTotal + carrier.price }} Frs CFA</td>
+                                </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+                        <div class="payment_method">
+                            <div class="heading_s1">
+                                <h4>Paiement</h4>
+                            </div>
+                        </div>
+                        <form action="/create-checkout-session" method="POST">
+                            <input type="hidden" name="reference" value="{{ reference }}">
+                            <button type="submit" id="checkout-button" class="btn btn-fill-out btn-block mt-2 mb-2">
+                                Payer la somme de {{ cart.data.subTotal + carrier.price }} Frs CFA
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
+{% endblock %}

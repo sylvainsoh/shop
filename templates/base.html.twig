@@ -63,7 +63,7 @@
 <!-- End Preloader -->
 
 {% include "partials/header.html.twig" %}
-
+{% block scriptStripe %}{% endblock %}
 {% block body %}{% endblock %}
 
 {% include "partials/footer.html.twig" %}
@@ -102,6 +102,10 @@
 <!-- Easing JS -->
 <script src="{{ asset("assets/js/easing.js") }}"></script>
 <!-- Active JS -->
-<script src="{{ asset("assets/js/active.js") }}"></script>
+<script src="{{ asset("assets/js/active.js") }}">
+
+</script>
+
+
 </body>
 </html>

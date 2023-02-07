@@ -13,6 +13,16 @@
                     <hr>
                     <div class="login_wrap">
                         <div class="padding_eight_all bg-white">
+
+                            {% for message in app.flashes('checkout_message') %}
+                                <div class="alert alert-info alert-dismissible fade show" role="alert">
+                                    {{ message }}
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                            {%endfor %}
+
                             <div class="heading_s1">
                                 <h3>Ajouter une addresse</h3>
                             </div>

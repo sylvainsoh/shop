@@ -24,6 +24,7 @@
                                 {% endfor %}
                             </div>
                             {{ form_start(registrationForm) }}
+                            {{ form_row(registrationForm._token) }}
                             <form method="post">
                                 <div class="form-group">
                                     {{ form_row(registrationForm.email) }}

@@ -1,0 +1,50 @@
+[
+  {
+    "id": 1,
+    "name": "Homme",
+    "description": "<failed to load>\njava.sql.SQLException: no data\n\tat org.sqlite.jdbc4.JDBC4ResultSet$SqliteClob.length(JDBC4ResultSet.java:700)\n\tin LobInfo.fromClob(LobInfo.java:71)\n",
+    "image": null
+  },
+  {
+    "id": 2,
+    "name": "Femme",
+    "description": "<failed to load>\njava.sql.SQLException: no data\n\tat org.sqlite.jdbc4.JDBC4ResultSet$SqliteClob.length(JDBC4ResultSet.java:700)\n\tin LobInfo.fromClob(LobInfo.java:71)\n",
+    "image": null
+  },
+  {
+    "id": 3,
+    "name": "Bonnet",
+    "description": "<failed to load>\njava.sql.SQLException: no data\n\tat org.sqlite.jdbc4.JDBC4ResultSet$SqliteClob.length(JDBC4ResultSet.java:700)\n\tin LobInfo.fromClob(LobInfo.java:71)\n",
+    "image": null
+  },
+  {
+    "id": 4,
+    "name": "Montre",
+    "description": "<failed to load>\njava.sql.SQLException: no data\n\tat org.sqlite.jdbc4.JDBC4ResultSet$SqliteClob.length(JDBC4ResultSet.java:700)\n\tin LobInfo.fromClob(LobInfo.java:71)\n",
+    "image": null
+  },
+  {
+    "id": 5,
+    "name": "Bijoux",
+    "description": "<failed to load>\njava.sql.SQLException: no data\n\tat org.sqlite.jdbc4.JDBC4ResultSet$SqliteClob.length(JDBC4ResultSet.java:700)\n\tin LobInfo.fromClob(LobInfo.java:71)\n",
+    "image": null
+  },
+  {
+    "id": 6,
+    "name": "Drône",
+    "description": "<failed to load>\njava.sql.SQLException: no data\n\tat org.sqlite.jdbc4.JDBC4ResultSet$SqliteClob.length(JDBC4ResultSet.java:700)\n\tin LobInfo.fromClob(LobInfo.java:71)\n",
+    "image": null
+  },
+  {
+    "id": 7,
+    "name": "Gadget",
+    "description": "<failed to load>\njava.sql.SQLException: no data\n\tat org.sqlite.jdbc4.JDBC4ResultSet$SqliteClob.length(JDBC4ResultSet.java:700)\n\tin LobInfo.fromClob(LobInfo.java:71)\n",
+    "image": null
+  },
+  {
+    "id": 8,
+    "name": "Portable",
+    "description": "<failed to load>\njava.sql.SQLException: no data\n\tat org.sqlite.jdbc4.JDBC4ResultSet$SqliteClob.length(JDBC4ResultSet.java:700)\n\tin LobInfo.fromClob(LobInfo.java:71)\n",
+    "image": null
+  }
+]

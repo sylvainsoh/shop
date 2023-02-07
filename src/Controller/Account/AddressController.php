@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\Account;
 
 use App\Entity\Address;
 use App\Form\AddressType;
 use App\Repository\AdressRepository;
+use App\Services\CartService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -22,7 +23,7 @@ class AddressController extends AbstractController
     }
 
     #[Route('/new', name: 'app_address_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, AdressRepository $adressRepository): Response
+    public function new(Request $request, AdressRepository $adressRepository, CartService $cartService): Response
     {
         $address = new Address();
         $form = $this->createForm(AddressType::class, $address);
@@ -32,6 +33,10 @@ class AddressController extends AbstractController
             $user=$this->getUser();
             $address->setUser($user);
             $adressRepository->save($address, true);
+
+            if ($cartService->getFullCart()){
+                return  $this->redirectToRoute('app_checkout');
+            }
 
             $this->addFlash("address_message","Votre addresse a été bien ajoutée");
             return $this->redirectToRoute('app_account', [], Response::HTTP_SEE_OTHER);

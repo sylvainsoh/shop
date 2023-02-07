@@ -154,4 +154,17 @@ class Address
 
         return $this;
     }
+    public function __toString(){
+        $result=" ";
+        $result.=$this->fullname."&nbsp";
+        if ($this->getCampany()){
+            $result.=$this->campany."&nbsp";
+        }
+        $result.=$this->address."&nbsp";
+        $result.=$this->complement."&nbsp";
+        $result.=$this->codePostal."-".$this->city."&nbsp";
+        $result.=$this->country;
+
+        return $result;
+    }
 }

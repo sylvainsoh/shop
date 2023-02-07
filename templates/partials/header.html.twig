@@ -7,8 +7,7 @@
                     <!-- Top Left -->
                     <div class="top-left">
                         <ul class="list-main">
-                            <li><i class="ti-headphone-alt"></i> +060 (800) 801-582</li>
-                            <li><i class="ti-email"></i> support@shophub.com</li>
+                            <li><i class="ti-email"></i> support@eshop.com</li>
                         </ul>
                     </div>
                     <!--/ End Top Left -->
@@ -17,10 +16,9 @@
                     <!-- Top Right -->
                     <div class="right-content">
                         <ul class="list-main">
-                            <li><i class="ti-location-pin"></i> Store location</li>
-                            <li><i class="ti-alarm-clock"></i> <a href="#">Daily deal</a></li>
-                            {% if app.user  %}
-                                <li><i class="ti-user"></i> <a href="{{ path("app_account")}}">Mon compte</a></li>
+                            <li><i class="ti-location-pin"></i> Boutiques</li>
+                            {% if app.user %}
+                                <li><i class="ti-user"></i> <a href="{{ path("app_account") }}">Mon compte</a></li>
                                 <li><i class="ti-power-off"></i><a href="{{ path('app_logout') }}">Déconnexion</a></li>
                             {% else %}
                                 <li><i class="ti-mouse"></i><a href="{{ path('app_login') }}">Connexion</a></li>
@@ -40,7 +38,8 @@
                 <div class="col-lg-2 col-md-2 col-12">
                     <!-- Logo -->
                     <div class="logo">
-                        <a href="index.html"><img src="{{ asset("assets/images/logo.png") }}" alt="logo"></a>
+                        <a href="{{ path("app_home") }}"><img src="{{ asset("assets/images/logo.png") }}"
+                                                              alt="logo"></a>
                     </div>
                     <!--/ End Logo -->
                     <!-- Search Form -->
@@ -49,7 +48,7 @@
                         <!-- Search Form -->
                         <div class="search-top">
                             <form class="search-form">
-                                <input type="text" placeholder="Search here..." name="search">
+                                <input type="text" placeholder="Rechercher ici..." name="search">
                                 <button value="search" type="submit"><i class="ti-search"></i></button>
                             </form>
                         </div>
@@ -62,13 +61,13 @@
                     <div class="search-bar-top">
                         <div class="search-bar">
                             <select>
-                                <option selected="selected">All Category</option>
+                                <option selected="selected">Catégories</option>
                                 <option>watch</option>
                                 <option>mobile</option>
                                 <option>kid’s item</option>
                             </select>
                             <form>
-                                <input name="search" placeholder="Search Products Here....." type="search">
+                                <input name="search" placeholder="Rechercher ici....." type="search">
                                 <button class="btnn"><i class="ti-search"></i></button>
                             </form>
                         </div>
@@ -81,36 +80,58 @@
                             <a href="#" class="single-icon"><i class="fa fa-heart-o" aria-hidden="true"></i></a>
                         </div>
                         <div class="sinlge-bar">
-                            <a href="#" class="single-icon"><i class="fa fa-user-circle-o" aria-hidden="true"></i></a>
+                            <a href="{{ path('app_account') }}" class="single-icon"><i class="fa fa-user-circle-o"
+                                                                                       aria-hidden="true"></i></a>
                         </div>
                         <div class="sinlge-bar shopping">
-                            <a href="#" class="single-icon"><i class="ti-bag"></i> <span class="total-count">2</span></a>
+                            <a href="#" class="single-icon"><i class="ti-bag"></i>
+                                {% if app.session.get("cart") %}
+                                    <span class="total-count">
+                                    {{ app.session.get('cartData').data.quantity_cart }}
+                                </span>
+                                {% else %}
+                                    <span class="total-count">
+                                  0
+                                </span>
+                                {% endif %}
+                            </a>
                             <!-- Shopping Item -->
                             <div class="shopping-item">
+                                {% if app.session.get("cart") %}
                                 <div class="dropdown-cart-header">
-                                    <span>2 Items</span>
-                                    <a href="#">View Cart</a>
+                                    <span>  {{ app.session.get('cartData').data.quantity_cart }} article(s)</span>
+                                    <a href="{{ path("cart") }}">Consulter le panier</a>
                                 </div>
+                                {% endif %}
                                 <ul class="shopping-list">
-                                    <li>
-                                        <a href="#" class="remove" title="Remove this item"><i class="fa fa-remove"></i></a>
-                                        <a class="cart-img" href="#"><img src="https://via.placeholder.com/70x70" alt="#"></a>
-                                        <h4><a href="#">Woman Ring</a></h4>
-                                        <p class="quantity">1x - <span class="amount">$99.00</span></p>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="remove" title="Remove this item"><i class="fa fa-remove"></i></a>
-                                        <a class="cart-img" href="#"><img src="https://via.placeholder.com/70x70" alt="#"></a>
-                                        <h4><a href="#">Woman Necklace</a></h4>
-                                        <p class="quantity">1x - <span class="amount">$35.00</span></p>
-                                    </li>
+                                    {% if app.session.get("cart") %}
+                                        {% for element in app.session.get('cartData').products %}
+                                            <li>
+                                                <a href="{{ path("cart_remove_product",{'id' :  element.product.id}) }}"
+                                                   class="remove" title="Remove this item"><i class="fa fa-remove"></i></a>
+                                                <a class="cart-img" href="#"><img width="70"
+                                                                                  src="/assets/uploads/products/{{ element.product.image }}"
+                                                                                  alt="{{ element.product.neame }}"></a>
+                                                <h4><a href="#">{{ element.product.neame }}</a></h4>
+                                                <p class="quantity">{{ element.quantity }} x - <span
+                                                            class="amount">{{ element.product.price }} Frs CFA</span>
+                                                </p>
+                                            </li>
+                                        {% endfor %}
+                                    {% else %}
+                                        <li class="text-center">
+                                            Panier vide !
+                                        </li>
+                                    {% endif %}
                                 </ul>
                                 <div class="bottom">
-                                    <div class="total">
-                                        <span>Total</span>
-                                        <span class="total-amount">$134.00</span>
-                                    </div>
-                                    <a href="checkout.html" class="btn animate">Checkout</a>
+                                    {% if app.session.get("cart") %}
+                                        <div class="total">
+                                            <span>Total</span>
+                                            <span class="total-amount">{{ app.session.get('cartData').data.subTotal }} Frs CFA</span>
+                                        </div>
+                                        <a href="{{ path('app_checkout') }}" class="btn animate">Commande</a>
+                                    {% endif %}
                                 </div>
                             </div>
                             <!--/ End Shopping Item -->
@@ -142,7 +163,8 @@
                                         <li><a href="#">denim </a></li>
                                     </ul>
                                 </li>
-                                <li class="main-mega"><a href="#">best selling <i class="fa fa-angle-right" aria-hidden="true"></i></a>
+                                <li class="main-mega"><a href="#">best selling <i class="fa fa-angle-right"
+                                                                                  aria-hidden="true"></i></a>
                                     <ul class="mega-menu">
                                         <li class="single-menu">
                                             <a href="#" class="title-link">Shop Kid's</a>
@@ -203,11 +225,12 @@
                                             <li class="active"><a href="#">Home</a></li>
                                             <li><a href="#">Product</a></li>
                                             <li><a href="#">Service</a></li>
-                                            <li><a href="#">Shop<i class="ti-angle-down"></i><span class="new">New</span></a>
+                                            <li><a href="#">Shop<i class="ti-angle-down"></i><span
+                                                            class="new">New</span></a>
                                                 <ul class="dropdown">
                                                     <li><a href="shop-grid.html">Shop Grid</a></li>
                                                     <li><a href="cart.html">Cart</a></li>
-                                                    <li><a href="checkout.html">Checkout</a></li>
+                                                    <li><a href="{{ path('app_checkout') }}">Checkout</a></li>
                                                 </ul>
                                             </li>
                                             <li><a href="#">Pages</a></li>

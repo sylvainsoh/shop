@@ -1,9 +1,14 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Mon compte !{% endblock %}
+{% block title %}Mon compte  {% endblock %}
 
 {% block body %}
-
+    <style>
+         a.active {
+            background-color: #f6931d !important;
+             color: white !important;
+        }
+    </style>
     {{ include( "partials/title_section.html.twig", {'name' :'Mon compte'}) }}
 
 
@@ -11,33 +16,37 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-3 col-md-4">
-                    <div class="dashboard_menu">
-                        <ul class="nav nav-tabs flex-column list-group" role="tablist">
+                    <ul class="nav nav-tabs flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link active" id="dashboard-tab" data-toggle="tab" href="#dashboard"
+                               role="tab" aria-controls="dashboard" aria-selected="false"><i class="ti-layout-grid2"></i> Dashboard</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="orders-tab" data-toggle="tab" href="#orders" role="tab"
+                               aria-controls="orders" aria-selected="false"><i class="ti-shopping-cart-full"></i> Commandes</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="address-tab" data-toggle="tab" href="#address" role="tab"
+                               aria-controls="address" aria-selected="true"><i class="ti-location-pin"></i> Mes
+                                Addresses</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="account-detail-tab" data-toggle="tab" href="#account-detail"
+                               role="tab" aria-controls="account-detail" aria-selected="true"><i
+                                        class="ti-id-badge"></i> Détails de mon compte</a>
+                        </li>
+                        {% if is_granted('ROLE_ADMIN') %}
                             <li class="nav-item">
-                                <a class="nav-link active" id="dashboard-tab" data-toggle="tab" href="#dashboard"
-                                   role="tab" aria-controls="dashboard" aria-selected="false"><i
-                                            class="ti-layout-grid2"></i>Dashboard</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" id="orders-tab" data-toggle="tab" href="#orders" role="tab"
-                                   aria-controls="orders" aria-selected="false"><i class="ti-shopping-cart-full"></i>Commandes</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" id="address-tab" data-toggle="tab" href="#address" role="tab"
-                                   aria-controls="address" aria-selected="true"><i class="ti-location-pin"></i>Mes
-                                    Addresses</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" id="account-detail-tab" data-toggle="tab" href="#account-detail"
+                                <a class="nav-link" id="account-detail-tab" target="_blank"  href="{{ path('admin') }}"
                                    role="tab" aria-controls="account-detail" aria-selected="true"><i
-                                            class="ti-id-badge"></i>Détails de mon compte</a>
+                                            class="ti-briefcase"></i> Administration</a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ path('app_logout') }}"><i
-                                            class="ti-lock"></i>Déconnexion</a>
-                            </li>
-                        </ul>
-                    </div>
+                        {%  endif %}
+                        <li class="nav-item">
+                            <a class="nav-link text-danger" href="{{ path('app_logout') }}"><i
+                                        class="ti-lock"></i> Déconnexion</a>
+                        </li>
+                    </ul>
                 </div>
                 <div class="col-lg-9 col-md-8">
 
@@ -75,38 +84,39 @@
                         <div class="tab-pane fade" id="orders" role="tabpanel" aria-labelledby="orders-tab">
                             <div class="card">
                                 <div class="card-header">
-                                    <h3>Orders</h3>
+                                    <h3>Commandes</h3>
                                 </div>
                                 <div class="card-body">
-                                    <div class="table-responsive">
-                                        <table class="table">
-                                            <thead>
-                                            <tr>
-                                                <th>Order</th>
-                                                <th>Date</th>
-                                                <th>Status</th>
-                                                <th>Total</th>
-                                                <th>Actions</th>
-                                            </tr>
-                                            </thead>
-                                            <tbody>
-                                            <tr>
-                                                <td>#1234</td>
-                                                <td>March 15, 2020</td>
-                                                <td>Processing</td>
-                                                <td>$78.00 for 1 item</td>
-                                                <td><a href="#" class="btn btn-fill-out btn-sm">View</a></td>
-                                            </tr>
-                                            <tr>
-                                                <td>#2366</td>
-                                                <td>June 20, 2020</td>
-                                                <td>Completed</td>
-                                                <td>$81.00 for 1 item</td>
-                                                <td><a href="#" class="btn btn-fill-out btn-sm">View</a></td>
-                                            </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
+                                    {% if orders %}
+                                        <div class="table-responsive">
+                                            <table class="table">
+                                                <thead>
+                                                <tr>
+                                                    <th>Id</th>
+                                                    <th>Date</th>
+                                                    <th>Statut</th>
+                                                    <th>Total</th>
+                                                    <th>Actions</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                {% for order in orders %}
+                                                <tr>
+                                                    <td>#{{ order.id }}</td>
+                                                    <td>{{ order.createdAt | date('d/m/Y')}}</td>
+                                                    <td>Processing</td>
+                                                    <td>{{ order.subTotalTTC }} pour {{ order.quantity }} article(s)</td>
+                                                    <td><a href="{{ path('app_account_show_order',{'id':order.id }) }}" class="btn btn-primary text-white">Voir</a></td>
+                                                </tr>
+                                                {% endfor %}
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    {% else %}
+                                        <div>
+                                            Déoslé {{ app.user.fullName }} vous n'avez pas encore de commande
+                                        </div>
+                                    {% endif %}
                                 </div>
                             </div>
                         </div>

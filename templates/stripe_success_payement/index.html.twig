@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Commande réussie {% endblock %}
+
+{% block body %}
+    {{ include( "partials/title_section.html.twig", {'name' :'Commande réussie ✅ '}) }}
+    <div class="section checkout">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    <div class="text-center order_complete">
+                        <div class="heading_s1">
+                            <h3>Merci pour votre commande <span>{{ order.user.firstname }} {{ order.user.lastname }}</span>. <br>
+                                Paiement effectué avec succès !</h3>
+                            <hr>
+                            <div class="">
+                                <div>La référence de votre commande est <strong>{{ order.reference }}</strong> et elle
+                                    est validée.
+                                </div>
+                                <div>Votre paiement est actuellement "en attente de vérification"..
+                                    Les paiements sont généralement vérifiés dans un délai d'une heure. Après
+                                    vérification, le vendeur commence à traiter votre commande.
+                                    Pendant ce laps de temps, vous ne pourrez pas modifier votre commande.
+                                </div>
+                                <hr>
+                                <div>
+                                    <div>Merci pour votre commande ! Votre commande est en cours de traitement et sera
+                                        terminée dans les 3 à 6 heures. Vous recevrez un courriel de confirmation
+                                        lorsque votre commande sera terminée..
+                                    </div>
+                                    <a href="{{ path('app_home') }}" class="btn btn-primary text-white">
+                                        <i class="fa fa-cart-plus"></i>
+                                        Continuer Mes achats
+                                    </a>
+                                </div>
+                            </div>
+                            <div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

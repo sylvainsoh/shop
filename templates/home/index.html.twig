@@ -1,8 +1,88 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello HomeController!{% endblock %}
+{% block title %}Bienvenue {% endblock %}
 
 {% block body %}
-    {{ include( "partials/title_section.html.twig", {'name' :'Accueil'}) }}
+   {% if homeSlider%}
+       {{ include( "partials/home_slider.html.twig", {'slider' : homeSlider}) }}
+   {% else %}
+       {{ include( "partials/title_section.html.twig", {'name' :'Bienvenue sur EShop '}) }}
+   {% endif%}
+    <!-- Start Product Area -->
+    <div class="product-area section">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="section-title">
+                        <h2>A l'affiche actuellement</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <div class="product-info">
+                        <div class="nav-main">
+                            <!-- Tab Nav -->
+                            <ul class="nav nav-tabs" id="myTab" role="tablist">
+                                <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#nouveaute" role="tab">Nouveautés</a></li>
+                                <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#bestseller" role="tab">Meilleures ventes</a></li>
+                                <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#offreSpeciale" role="tab">Offres spéciales</a></li>
+                                <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#isFeatured" role="tab">En vedette</a></li>
+                            </ul>
+                            <!--/ End Tab Nav -->
+                        </div>
+                        <div class="tab-content" id="myTabContent">
+                            <!-- Start Single Tab -->
+                            <div class="tab-pane fade show active" id="nouveaute" role="tabpanel">
+                                <div class="tab-single">
+                                    <div class="row">
+                                        {%  for product in  productNewArrival %}
+                                            {{ include('partials/product.html.twig', {'product' : product}) }}
+                                        {% endfor  %}
+                                    </div>
+                                </div>
+                            </div>
+                            <!--/ End Single Tab -->
+                            <!-- Start Single Tab -->
+                            <div class="tab-pane fade" id="bestseller" role="tabpanel">
+                                <div class="tab-single">
+                                    <div class="row">
+                                        {%  for product in  productBestSeller %}
+                                            {{ include('partials/product.html.twig', {'product' : product}) }}
+                                        {% endfor  %}
+                                    </div>
+                                </div>
+                            </div>
+                            <!--/ End Single Tab -->
 
+                            <!-- Start Single Tab -->
+                            <div class="tab-pane fade" id="offreSpeciale" role="tabpanel">
+                                <div class="tab-single">
+                                    <div class="row">
+                                        {%  for product in  productSpecialOffer %}
+                                            {{ include('partials/product.html.twig', {'product' : product}) }}
+                                        {% endfor  %}
+                                    </div>
+                                </div>
+                            </div>
+                            <!--/ End Single Tab -->
+
+                            <!-- Start Single Tab -->
+                            <div class="tab-pane fade" id="isFeatured" role="tabpanel">
+                                <div class="tab-single">
+                                    <div class="row">
+                                        {%  for product in  productFeatured %}
+                                            {{ include('partials/product.html.twig', {'product' : product}) }}
+                                        {% endfor  %}
+                                    </div>
+                                </div>
+                            </div>
+                            <!--/ End Single Tab -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Product Area -->
 {% endblock %}

@@ -1,0 +1,43 @@
+<div class="col-xl-3 col-lg-4 col-md-4 col-12">
+    <div class="single-product">
+        <div class="product-img">
+            <a href="{{ path("product_details",{'slug' : product.slug}) }}">
+                {% if product.image is defined %}
+                    <img width="550" height="750" class="default-img" src="assets/uploads/products/{{ product.image  }}" alt="{{  product.slug }}">
+                    <img class="hover-img" src="assets/uploads/products/{{ product.image  }}" alt="{{  product.slug }}">
+                {% else %}
+                    <img class="default-img" src="https://via.placeholder.com/550x750" alt="{{  product.slug }}">
+                    <img class="hover-img" src="https://via.placeholder.com/550x750" alt="{{  product.slug }}">
+                {% endif %}
+                {% if product.isBestSeller  == 1 %}
+                    <span class="out-of-stock">Chaud</span>
+                {% elseif product.isNewArrival  == 1  %}
+                    <span class="new bg-primary">Nouveauté</span>
+                {% elseif product.isBestSeller  == 1  %}
+
+                {% elseif product.isFeatured   == 1 %}
+
+                {% elseif product.isSpecialOffer   == 1  %}
+
+                {% endif %}
+            </a>
+            <div class="button-head">
+                <div class="product-action">
+                    <a  href="{{ path("product_details",{'slug' : product.slug}) }}" title="Aperçu" ><i class=" ti-eye"></i><span>Voir</span></a>
+                    <a title="Ajouter à la liste d'envies" href="{{path("cart_add",{'id':product.id})}}"><i class=" ti-heart "></i><span>Ajouter à la liste d'envies</span></a>
+                    <a title="Comparer" href="#"><i class="ti-bar-chart-alt"></i><span>Comparer</span></a>
+                </div>
+                <div class="product-action-2">
+                    <a title="Add to cart" href="{{path("cart_add",{'id':product.id})}}">Ajouter au panier</a>
+                </div>
+            </div>
+        </div>
+        <div class="product-content">
+            <h3><a href="product-details.html"></a>{{ product.neame  }}</h3>
+            <div class="product-price">
+                <span>{{ product.price}}</span> Frs CFA<br>
+                <span>{{ product.reviewsProducts | length }} Avis</span>
+            </div>
+        </div>
+    </div>
+</div>

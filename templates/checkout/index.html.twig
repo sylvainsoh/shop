@@ -1,0 +1,98 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Commande {% endblock %}
+
+{% block body %}
+    {{ include( "partials/title_section.html.twig", {'name' :'Votre commande'}) }}
+
+        <div class="container">
+            <hr>
+            {{ form_start(checkout, {action :path('app_checkout_confirm') }) }}
+            {{ form_row(checkout._token) }}
+            <div class="row">
+                    <div class="col-lg-12">
+                        <h4>Addresse de livraison</h4>
+                        <div class="content" >
+                            {{ form_widget(checkout.address) }}
+                        </div>
+                    </div>
+                    <div class="col-lg-12">
+                        <h4>Service de livraison</h4>
+                        <div class="form-group">
+                            {{ form_widget(checkout.carrier) }}
+                        </div>
+                    </div>
+                    <div class="col-lg-12">
+                        <h4>Informations complémentaires</h4>
+                        <div class="form-group">
+                            {{ form_widget(checkout.information) }}
+                        </div>
+                    </div>
+                <div class="col-lg-12 text-center">
+                    <a href="{{ path("app_address_new") }}" class="btn btn-primary text-white">
+                        <i class="fa fa-address-card"></i>
+                        Ajouter une nouvelle addresse
+                    </a>
+                </div>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="order_review">
+                        <div class="heading_s1">
+                            <h4>Vos articles</h4>
+                        </div>
+                        <div class="table-responsive order_table">
+                            <table class="table">
+                                <thead>
+                                <tr>
+                                    <th>Article</th>
+                                    <th>Total</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                              {% for element in cart.products %}
+                                  <tr>
+                                      <td>
+                                          {{ element.product.neame }}
+                                          <span class="product-qty">
+                                              x {{ element.quantity }}
+                                          </span>
+                                      </td>
+                                      <td>
+                                          {{ element.product.price }} Frs CFA
+                                      </td>
+                                  </tr>
+                              {% endfor  %}
+                                </tbody>
+                                <tfoot>
+                                <tr>
+                                    <th>Sous total</th>
+                                    <td class="product-subtotal"> {{ cart.data.subTotal }} Frs CFA</td>
+                                </tr>
+                                <tr>
+                                    <th>Taxe</th>
+                                    <td class="product-subtotal">0 %</td>
+                                </tr>
+                                <tr>
+                                    <th>Total</th>
+                                    <td class="product-subtotal"> {{ cart.data.subTotal }} Frs CFA</td>
+                                </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+                        <div class="payment_method">
+                            <div class="heading_s1">
+                                <h4>Paiement</h4>
+                            </div>
+
+                        </div>
+                        <button type="submit" id="checkout-button" class="btn btn-fill-out btn-block mt-2 mb-2">Valider</button>
+                    </div>
+                </div>
+            </div>
+            {{ form_start(checkout) }}
+        </div>
+
+
+{% endblock %}

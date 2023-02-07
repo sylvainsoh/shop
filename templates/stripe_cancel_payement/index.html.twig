@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Commande annulée {% endblock %}
+
+{% block body %}
+    {{ include( "partials/title_section.html.twig", {'name' :'Commande annulée 🚫 '}) }}
+    <div class="section checkout">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    <div class="text-center order_complete">
+                        <div class="heading_s1">
+                            <h3>Désolé {{ order.user.firstname }} {{ order.user.lastname }}, Votre paiement a été annulé
+                                !!</h3>
+                            <div>
+                                <div>Paiement pour la commande de reférence : <strong>{{ order.reference }}</strong>
+                                    annulé.
+                                </div>
+                                <hr>
+                                <div>Vous avez essayé de payer votre commande et nous vous en remercions.
+
+                                    Votre paiement n'a pas été accepté. Votre commande n'a pas été confirmée.
+                                    Nous vous invitons à vous connecter à notre site pour renouveler votre commande.
+                                    A bientôt sur notre boutique en ligne.
+                                </div>
+                                <div>
+                                    <br>
+                                    <a href="{{ path('app_checkout') }}" class="btn btn-primary text-white">
+                                        <i class="fa fa-refresh"></i>
+                                        Relancer le paiement
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}
