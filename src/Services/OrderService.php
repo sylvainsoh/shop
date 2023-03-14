@@ -126,7 +126,7 @@ class OrderService
             $line_items[]=[
                 'price_data'=>[
                     'currency'=>'xof',
-                    'unit_amount'=>$product->getPrice(),
+                    'unit_amount'=>$product->getPrice()/100,
                     'product_data'=>[
                         'name'=>$product->getNeame(),
                         'images'=>[$_ENV['MAIN_DOMAIN'].'/uploads/products/'.$product->getImage()],

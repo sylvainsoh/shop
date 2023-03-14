@@ -28,7 +28,7 @@
                                     <tr>
                                         <td class="product-thumbnail"><a href="{{ path("product_details",{'slug' : element.product.slug}) }}"><img width="100"  src="assets/uploads/products/{{ element.product.image  }}" alt="{{  element.product.slug }}"></a></td>
                                         <td class="product-name" data-title="Product"><a href="{{ path("product_details",{'slug' : element.product.slug}) }}">{{  element.product.neame }}</a></td>
-                                        <td class="product-price" data-title="Price">{{  element.product.price }} Frs CFA</td>
+                                        <td class="product-price" data-title="Price">{{  element.product.price/100 }} Frs CFA</td>
                                         <td class="product-quantity" data-title="Quantity">
                                             <div class="quantity">
                                                 <a href="{{ path("cart_delete",{'id' :  element.product.id}) }}" >-</a>
@@ -36,7 +36,7 @@
                                                 <a href="{{ path("cart_add",{'id' :  element.product.id}) }}" >+</a>
                                             </div>
                                         </td>
-                                        <td class="product-subtotal" data-title="Total">{{ element.quantity * element.product.price }}</td>
+                                        <td class="product-subtotal" data-title="Total">{{ element.quantity * element.product.price/100 }}</td>
                                         <td class="product-remove" data-title="Remove"><a href="{{ path("cart_remove_product",{'id' :  element.product.id}) }}">
                                                 <i class="ti-close"></i>
                                             </a>
@@ -74,7 +74,7 @@
                                     <tbody>
                                     <tr>
                                         <td class="cart_total_label">Sous total</td>
-                                        <td class="cart_total_amount">{{ cart.data.subTotal }}</td>
+                                        <td class="cart_total_amount">{{ cart.data.subTotal  }} Frs CFA</td>
                                     </tr>
                                     <tr style="display: none">
                                         <td class="cart_total_label">Livraison Gratuite</td>
@@ -82,7 +82,7 @@
                                     </tr>
                                     <tr>
                                         <td class="cart_total_label">Total TTC</td>
-                                        <td class="cart_total_amount"><strong>{{  cart.data.subTotal  }}</strong></td>
+                                        <td class="cart_total_amount"><strong>{{  cart.data.subTotal }} Frs CFA</strong></td>
                                     </tr>
                                     </tbody>
                                 </table>

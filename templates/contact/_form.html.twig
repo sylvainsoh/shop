@@ -1,0 +1,101 @@
+<div class="section pb_70">
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-4 col-md-6">
+                <div class="contact_wrap contact_style3">
+                    <div class="contact_icon">
+                        <i class="linearicons-map2"></i>
+                    </div>
+                    <div class="contact_text">
+                        <span>Addresse</span>
+                        <p>3 Rue Léon Gambetta, 59260 Hellemmes</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-4 col-md-6">
+                <div class="contact_wrap contact_style3">
+                    <div class="contact_icon">
+                        <i class="linearicons-envelope-open"></i>
+                    </div>
+                    <div class="contact_text">
+                        <span>Addresse Email</span>
+                        <p>
+                            <a href="mailto:info@sitename.com">contact@eshop.fr </a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-4 col-md-6">
+                <div class="contact_wrap contact_style3">
+                    <div class="contact_icon">
+                        <i class="linearicons-tablet2"></i>
+                    </div>
+                    <div class="contact_text">
+                        <span>Numero</span>
+                        <p>(+33) 7 52 15 25 60</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="section pt-0">
+    <div class="container">
+        <div class="row">
+            {% for message in app.flashes('contact_success') %}
+                <div class="alert alert-info alert-dismissible fade show col-lg-12 text-center" role="alert">
+                    {{ message }}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            {%endfor %}
+           {% for message in app.flashes('contact_error') %}
+                <div class="alert alert-danger alert-dismissible fade show col-lg-12 text-center" role="alert">
+                    {{ message }}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            {%endfor %}
+            <div class="col-lg-12">
+                <div class="heading_s1">
+                    <h2>Contactez-nous</h2>
+                </div>
+                <p class="leads">
+                    Pour tout questions ou demandes vous pouvez nous envoyer un méssage et nous vous feront un retour le plus rapidement possible.
+                </p>
+                <div class="field_form">
+                    {{ form_start(form) }}
+                    <form>
+                        {{ form_row(form._token) }}
+                        <div class="row">
+                            <div class="form-group col-md-6">
+                                {{ form_row(form.name) }}
+                            </div>
+                            <div class="form-group col-md-6">
+                                {{ form_row(form.email) }}
+                            </div>
+                            <div class="form-group col-md-6">
+                                {{ form_row(form.phone) }}
+                            </div>
+                            <div class="form-group col-md-6">
+                                {{ form_row(form.subject) }}
+                            </div>
+                            <div class="form-group col-md-12">
+                                {{ form_row(form.content) }}
+                            </div>
+                            <div class="col-md-12 text-center">
+                                <button class="btn btn-primary">{{ button_label| default('Envoyer le message') }}</button>
+                            </div>
+                        </div>
+                    </form>
+                    {{ form_end(form) }}
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

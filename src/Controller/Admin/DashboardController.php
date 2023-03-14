@@ -5,6 +5,7 @@ namespace App\Controller\Admin;
 use App\Entity\Carrier;
 use App\Entity\Cart;
 use App\Entity\Categories;
+use App\Entity\Contact;
 use App\Entity\HomeSlider;
 use App\Entity\Order;
 use App\Entity\Product;
@@ -58,6 +59,7 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToCrud('Produits', 'fa fa-shopping-cart',Product::class);
         yield MenuItem::linkToCrud('Categories', 'fa fa-list',Categories::class);
         yield MenuItem::linkToCrud('Livreur', 'fa fa-truck',Carrier::class);
+        yield MenuItem::linkToCrud('Contact', 'fa fa-envelope',Contact::class);
         yield MenuItem::linkToCrud('Slider accueil', 'fa fa-images',HomeSlider::class);
     }
 }

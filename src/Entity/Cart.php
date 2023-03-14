@@ -222,12 +222,12 @@ class Cart
 
     public function getSubTotal(): ?float
     {
-        return $this->subTotal*100;;
+        return $this->subTotal;
     }
 
     public function setSubTotal(float $subTotal): self
     {
-        $this->subTotal = $subTotal;
+        $this->subTotal = $subTotal*100;
 
         return $this;
     }
@@ -246,12 +246,12 @@ class Cart
 
     public function getSubTotalTTC(): ?float
     {
-        return $this->subTotalTTC*100;
+        return $this->subTotalTTC;
     }
 
     public function setSubTotalTTC(float $subTotalTTC): self
     {
-        $this->subTotalTTC = $subTotalTTC;
+        $this->subTotalTTC = $subTotalTTC*100;
 
         return $this;
     }

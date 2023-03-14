@@ -31,11 +31,11 @@
                             <tr>
                                 <td class="product-thumbnail">{{  element.id }} </td>
                                 <td class="product-name" data-title="Product">{{  element.productName}} </td>
-                                <td class="product-price" data-title="Price">{{  element.productPrice*100 }} Frs CFA</td>
+                                <td class="product-price" data-title="Price">{{  element.productPrice }} Frs CFA</td>
                                 <td class="product-quantity" data-title="Quantity">{{  element.quantity}}</td>
-                                <td class="product-subtotal" data-title="Total">{{  element.subTotal*100}}</td>
-                                <td class="product-subtotal" data-title="Total">{{  element.taxe*100}}</td>
-                                <td class="product-subtotal" data-title="Total">{{  element.subTotalTTC*100}}</td>
+                                <td class="product-subtotal" data-title="Total">{{  element.subTotal}}</td>
+                                <td class="product-subtotal" data-title="Total">{{  element.taxe}}</td>
+                                <td class="product-subtotal" data-title="Total">{{  element.subTotalTTC}}</td>
                             </tr>
                         {% endfor %}
                         </tbody>

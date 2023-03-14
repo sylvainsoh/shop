@@ -105,7 +105,7 @@ class Carrier
         $result.="Détails : ";
         $result.=$this->description." &nbsp ";
         $result.="Prix : ";
-        $result.=$this->price."&nbsp Frs CFA";
+        $result.=($this->price/100)."&nbsp Frs CFA";
         return $result;
     }
 }

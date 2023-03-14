@@ -60,7 +60,7 @@
                                           </span>
                                       </td>
                                       <td>
-                                          {{ element.product.price }} Frs CFA
+                                          {{ element.product.price/100 }} Frs CFA
                                       </td>
                                   </tr>
                               {% endfor  %}
@@ -70,7 +70,7 @@
                                     <th>Sous total</th>
                                     <td class="product-subtotal"> {{ cart.data.subTotal }} Frs CFA</td>
                                 </tr>
-                                <tr>
+                                <tr style="display: none">
                                     <th>Taxe</th>
                                     <td class="product-subtotal">0 %</td>
                                 </tr>

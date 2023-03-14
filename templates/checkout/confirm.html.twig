@@ -71,7 +71,7 @@
                                           </span>
                                       </td>
                                       <td>
-                                          {{ element.product.price }} Frs CFA
+                                          {{ element.product.price/100 }} Frs CFA
                                       </td>
                                   </tr>
                               {% endfor  %}
@@ -81,17 +81,17 @@
                                     <th>Sous total</th>
                                     <td class="product-subtotal"> {{ cart.data.subTotal }} Frs CFA</td>
                                 </tr>
-                                <tr>
+                                <tr style="display: none">
                                     <th>Taxe</th>
                                     <td class="product-subtotal">0 %</td>
                                 </tr>
                                 <tr>
                                     <th>Livraison par ({{ carrier.name }})</th>
-                                    <td class="product-subtotal">{{ carrier.price }} Frs CFA</td>
+                                    <td class="product-subtotal">{{ carrier.price/100 }} Frs CFA</td>
                                 </tr>
                                 <tr>
                                     <th>Total</th>
-                                    <td class="product-subtotal"> {{ cart.data.subTotal + carrier.price }} Frs CFA</td>
+                                    <td class="product-subtotal"> {{ (cart.data.subTotal) + (carrier.price/100) }} Frs CFA</td>
                                 </tr>
                                 </tfoot>
                             </table>
@@ -104,7 +104,7 @@
                         <form action="/create-checkout-session" method="POST">
                             <input type="hidden" name="reference" value="{{ reference }}">
                             <button type="submit" id="checkout-button" class="btn btn-fill-out btn-block mt-2 mb-2">
-                                Payer la somme de {{ cart.data.subTotal + carrier.price }} Frs CFA
+                                Payer la somme de {{ (cart.data.subTotal) + (carrier.price/100) }} Frs CFA
                             </button>
                         </form>
                     </div>

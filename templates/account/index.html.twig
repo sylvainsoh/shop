@@ -105,7 +105,7 @@
                                                     <td>#{{ order.id }}</td>
                                                     <td>{{ order.createdAt | date('d/m/Y')}}</td>
                                                     <td>Processing</td>
-                                                    <td>{{ order.subTotalTTC }} pour {{ order.quantity }} article(s)</td>
+                                                    <td>{{ (order.subTotalTTC /100 )}} pour {{ order.quantity }} article(s)</td>
                                                     <td><a href="{{ path('app_account_show_order',{'id':order.id }) }}" class="btn btn-primary text-white">Voir</a></td>
                                                 </tr>
                                                 {% endfor %}

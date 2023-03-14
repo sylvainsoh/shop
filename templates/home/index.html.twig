@@ -8,13 +8,63 @@
    {% else %}
        {{ include( "partials/title_section.html.twig", {'name' :'Bienvenue sur EShop '}) }}
    {% endif%}
+
+    <!-- Start Small Banner  -->
+    <section class="small-banner section">
+        <div class="container-fluid">
+            <div class="row">
+                <!-- Single Banner  -->
+                <div class="col-lg-4 col-md-6 col-12">
+                    <div class="single-banner">
+                        <img height="600" width="370" src="assets/images/backOrange.jpg" alt="back Image">
+                        <div class="content">
+                            <p>Collection Homme</p>
+                            <h3>Collection voyage<br>
+                                d'été
+                            </h3>
+                            <a href="#">Décourvir maintenant</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- /End Single Banner  -->
+                <!-- Single Banner  -->
+                <div class="col-lg-4 col-md-6 col-12">
+                    <div class="single-banner">
+                        <img height="600" width="370" src="assets/images/backOrange.jpg" alt="back Image">
+                        <div class="content">
+                            <p>Collection de Sacs</p>
+                            <h3>Des sacs incroyables<br> 2023</h3>
+                            <a href="#">Voir</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- /End Single Banner  -->
+                <!-- Single Banner  -->
+                <div class="col-lg-4 col-12">
+                    <div class="single-banner tab-height">
+                        <img height="600" width="370" src="assets/images/backOrange.jpg" alt="back Image">
+                        <div class="content">
+                            <p>Ventes rapides</p>
+                            <h3>Mi-saison <br> jusqu'à <span>40%</span> de réductions </h3>
+                            <a href="#">Décourvir maintenant</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- /End Single Banner  -->
+            </div>
+        </div>
+    </section>
+    <!-- End Small Banner -->
+
     <!-- Start Product Area -->
     <div class="product-area section">
         <div class="container">
             <div class="row">
                 <div class="col-12">
                     <div class="section-title">
-                        <h2>A l'affiche actuellement</h2>
+                        <h2>
+                            Sélection pour vous
+                        </h2>
                     </div>
                 </div>
             </div>
@@ -37,7 +87,9 @@
                                 <div class="tab-single">
                                     <div class="row">
                                         {%  for product in  productNewArrival %}
-                                            {{ include('partials/product.html.twig', {'product' : product}) }}
+                                            <div class="col-xl-3 col-lg-4 col-md-4 col-12">
+                                                {{ include('partials/product.html.twig', {'product' : product}) }}
+                                            </div>
                                         {% endfor  %}
                                     </div>
                                 </div>
@@ -48,7 +100,9 @@
                                 <div class="tab-single">
                                     <div class="row">
                                         {%  for product in  productBestSeller %}
-                                            {{ include('partials/product.html.twig', {'product' : product}) }}
+                                            <div class="col-xl-3 col-lg-4 col-md-4 col-12">
+                                                {{ include('partials/product.html.twig', {'product' : product}) }}
+                                            </div>
                                         {% endfor  %}
                                     </div>
                                 </div>
@@ -60,7 +114,9 @@
                                 <div class="tab-single">
                                     <div class="row">
                                         {%  for product in  productSpecialOffer %}
-                                            {{ include('partials/product.html.twig', {'product' : product}) }}
+                                            <div class="col-xl-3 col-lg-4 col-md-4 col-12">
+                                                {{ include('partials/product.html.twig', {'product' : product}) }}
+                                            </div>
                                         {% endfor  %}
                                     </div>
                                 </div>
@@ -72,7 +128,9 @@
                                 <div class="tab-single">
                                     <div class="row">
                                         {%  for product in  productFeatured %}
-                                            {{ include('partials/product.html.twig', {'product' : product}) }}
+                                            <div class="col-xl-3 col-lg-4 col-md-4 col-12">
+                                                {{ include('partials/product.html.twig', {'product' : product}) }}
+                                            </div>
                                         {% endfor  %}
                                     </div>
                                 </div>
@@ -85,4 +143,329 @@
         </div>
     </div>
     <!-- End Product Area -->
+
+    <!-- Start Midium Banner  -->
+    <section class="midium-banner">
+        <div class="container">
+            <div class="row">
+                <!-- Single Banner  -->
+                <div class="col-lg-6 col-md-6 col-12">
+                    <div class="single-banner">
+                        <img height="600" width="370" src="assets/images/backOrange.jpg" alt="back Image">
+                        <div class="content">
+                            <p>Collection Homme</p>
+                            <h3>Collection<br>
+                                d'été
+                            </h3>
+                            <a href="#">Décourvir maintenant</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- /End Single Banner  -->
+                <!-- Single Banner  -->
+                <div class="col-lg-6 col-md-6 col-12">
+                    <div class="single-banner">
+                        <img height="600" width="370" src="assets/images/backOrange.jpg" alt="back Image">
+                        <div class="content">
+                            <p>Collection Femme</p>
+                            <h3>Collection<br>
+                                d'été
+                            </h3>
+                            <a href="#">Décourvir maintenant</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- /End Single Banner  -->
+            </div>
+        </div>
+    </section>
+    <!-- End Midium Banner -->
+
+    <!-- Start Most Popular -->
+    <div class="product-area most-popular section">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="section-title">
+                        <h2>Meilleurs achats</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <div class="owl-carousel popular-slider">
+                        {%  for product in  productNewArrival %}
+                            {{ include('partials/product.html.twig', {'product' : product}) }}
+                        {% endfor  %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Most Popular Area -->
+
+
+    <!-- Start Shop Home List  -->
+    <section class="shop-home-list section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 col-md-6 col-12">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="shop-section-title">
+                                <h1>En vente</h1>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Start Single List  -->
+                    {%  for product in  productNewArrival %}
+                        {% if loop.index <=3 %}
+                            <div class="single-list">
+                                <div class="row">
+                                    <div class="col-lg-6 col-md-6 col-12">
+                                        <div class="list-image overlay">
+                                            <img height="115" width="140" src="assets/uploads/products/{{ product.image}}" alt="#">
+                                            <a href="#" class="buy"><i class="fa fa-shopping-bag"></i></a>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-12 no-padding">
+                                        <div class="content">
+                                            <h4 class="title">
+                                                <a href="{{ path("product_details",{'slug' : product.slug}) }}">
+                                                    {{ product.neame }}
+                                                </a>
+                                            </h4>
+                                            <p class="price with-discount">{{ product.price/100 }} Frs CFA</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endif%}
+                    {% endfor  %}
+                    <!-- End Single List  -->
+                </div>
+                <div class="col-lg-4 col-md-6 col-12">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="shop-section-title">
+                                <h1>Meilleures ventes</h1>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Start Single List  -->
+                    {%  for product in  productFeatured %}
+                        {% if loop.index <=3 %}
+                            <div class="single-list">
+                                <div class="row">
+                                    <div class="col-lg-6 col-md-6 col-12">
+                                        <div class="list-image overlay">
+                                            <img height="115" width="140" src="assets/uploads/products/{{ product.image}}" alt="#">
+                                            <a href="#" class="buy"><i class="fa fa-shopping-bag"></i></a>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-12 no-padding">
+                                        <div class="content">
+                                            <h4 class="title">
+                                                <a href="{{ path("product_details",{'slug' : product.slug}) }}">
+                                                    {{ product.neame }}
+                                                </a>
+                                            </h4>
+                                            <p class="price with-discount">{{ product.price/100 }} Frs CFA</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endif%}
+                    {% endfor  %}
+                    <!-- End Single List  -->
+                </div>
+                <div class="col-lg-4 col-md-6 col-12">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="shop-section-title">
+                                <h1>Offres spéciales</h1>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Start Single List  -->
+                    {%  for product in  productSpecialOffer %}
+                        {% if loop.index <=3 %}
+                            <div class="single-list">
+                                <div class="row">
+                                    <div class="col-lg-6 col-md-6 col-12">
+                                        <div class="list-image overlay">
+                                            <img height="115" width="140" src="assets/uploads/products/{{ product.image}}" alt="#">
+                                            <a href="#" class="buy"><i class="fa fa-shopping-bag"></i></a>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-12 no-padding">
+                                        <div class="content">
+                                            <h4 class="title">
+                                                <a href="{{ path("product_details",{'slug' : product.slug}) }}">
+                                                    {{ product.neame }}
+                                                </a>
+                                            </h4>
+                                            <p class="price with-discount">{{ product.price/100 }} Frs CFA</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endif%}
+                    {% endfor  %}
+                    <!-- End Single List  -->
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End Shop Home List  -->
+
+    <!-- Start Cowndown Area -->
+    <section class="cown-down">
+        <div class="section-inner ">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-6 col-12 padding-right">
+                        <div class="image">
+                            <img src="assets/images/backOrange.jpg" alt="#">
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-12 padding-left">
+                        <div class="content">
+                            <div class="heading-block">
+                                <p class="small-title">Deal du jour</p>
+                                <h3 class="title">Belle robe pour femme</h3>
+                                <p class="text">Meilleure sélection de produits pour vous. Meilleure sélection de produits pour vous. Meilleure sélection de produits pour vous. Meilleure sélection de produits pour vous. Meilleure sélection de produits pour vous. Meilleure sélection de produits pour vous.  </p>
+                                <h1 class="price">1200 Frs CFA <s>1990 Frs CFA</s></h1>
+                                <div class="coming-time">
+                                    <div class="clearfix" data-countdown="2023/03/30"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- /End Cowndown Area -->
+
+
+    <!-- Start Shop Blog  -->
+    <section class="shop-blog section">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="section-title">
+                        <h2>Depuis notre blog</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-4 col-md-6 col-12">
+                    <!-- Start Single Blog  -->
+                    <div class="shop-single-blog">
+                        <img src="assets/images/backOrange.jpg" alt="#">
+                        <div class="content">
+                            <p class="date">22 Juillet , 2021. Lundi</p>
+                            <a href="#" class="title">Les statistiques du Ecommerce en 2021.</a>
+                        </div>
+                    </div>
+                    <!-- End Single Blog  -->
+                </div>
+                <div class="col-lg-4 col-md-6 col-12">
+                    <!-- Start Single Blog  -->
+                    <div class="shop-single-blog">
+                        <img src="assets/images/backOrange.jpg" alt="#">
+                        <div class="content">
+                            <p class="date">1 Juillet , 2022. Mercredi</p>
+                            <a href="#" class="title">Les statistiques du Ecommerce en 2022.</a>
+                        </div>
+                    </div>
+                    <!-- End Single Blog  -->
+                </div>
+                <div class="col-lg-4 col-md-6 col-12">
+                    <!-- Start Single Blog  -->
+                    <div class="shop-single-blog">
+                        <img src="assets/images/backOrange.jpg" alt="#">
+                        <div class="content">
+                            <p class="date">1 Juillet , 2022. Mercredi</p>
+                            <a href="#" class="title">Les statistiques du Ecommerce en 2022.</a>
+                        </div>
+                    </div>
+                    <!-- End Single Blog  -->
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End Shop Blog  -->
+
+    <!-- Start Shop Services Area -->
+    <section class="shop-services section home">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-md-6 col-12">
+                    <!-- Start Single Service -->
+                    <div class="single-service">
+                        <i class="ti-rocket"></i>
+                        <h4>Livraison rapide</h4>
+                        <p>Moins chère</p>
+                    </div>
+                    <!-- End Single Service -->
+                </div>
+                <div class="col-lg-3 col-md-6 col-12">
+                    <!-- Start Single Service -->
+                    <div class="single-service">
+                        <i class="ti-reload"></i>
+                        <h4>Livraison</h4>
+                        <p>Sur toute l'étendue du territoire</p>
+                    </div>
+                    <!-- End Single Service -->
+                </div>
+                <div class="col-lg-3 col-md-6 col-12">
+                    <!-- Start Single Service -->
+                    <div class="single-service">
+                        <i class="ti-lock"></i>
+                        <h4>Paiement</h4>
+                        <p>100 % sécurisé</p>
+                    </div>
+                    <!-- End Single Service -->
+                </div>
+                <div class="col-lg-3 col-md-6 col-12">
+                    <!-- Start Single Service -->
+                    <div class="single-service">
+                        <i class="ti-tag"></i>
+                        <h4>Meilleurs prix</h4>
+                        <p>Prix garantis</p>
+                    </div>
+                    <!-- End Single Service -->
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End Shop Services Area -->
+
+
+
+    <!-- Start Shop Newsletter  -->
+    <section class="shop-newsletter section">
+        <div class="container">
+            <div class="inner-top">
+                <div class="row">
+                    <div class="col-lg-8 offset-lg-2 col-12">
+                        <!-- Start Newsletter Inner -->
+                        <div class="inner">
+                            <h4>Newsletter</h4>
+                            <p> Abonnez-vous à notre newsletter et recevez <span>10%</span> sur un de vos achats.</p>
+                            <form action="" method="POST" target="_blank" class="newsletter-inner">
+                                <input name="email" placeholder="Votre addresse email" required="" type="email">
+                                <button class="btn">Subscribe</button>
+                            </form>
+                        </div>
+                        <!-- End Newsletter Inner -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End Shop Newsletter -->
+
 {% endblock %}

@@ -14,33 +14,43 @@ class HomeController extends AbstractController
     #[Route('/', name: 'app_home')]
     public function index(ProductRepository $repoProduct, HomeSliderRepository $homeSliderRepository): Response
     {
-        $sliders=$homeSliderRepository->findOneBy(['isDisplayed'=>true]);
+        $sliders = $homeSliderRepository->findOneBy(['isDisplayed' => true]);
 
-        $products=$repoProduct->findAll();
+        $products = $repoProduct->findAll();
         $productBestSeller = $repoProduct->findByIsBestSeller(1);
         $productSpecialOffer = $repoProduct->findByIsSpecialOffer(1);
         $productNewArrival = $repoProduct->findByIsNewArrival(1);
-        $productFeatured= $repoProduct->findByIsFeatured(1);
+        $productFeatured = $repoProduct->findByIsFeatured(1);
 
         return $this->render('home/index.html.twig', [
-            'products'=>$products,
-            'productBestSeller'=>$productBestSeller,
-            'productSpecialOffer'=>$productSpecialOffer,
-            'productNewArrival'=>$productNewArrival,
-            'productFeatured'=>$productFeatured,
-            'homeSlider'=>$sliders
+            'products' => $products,
+            'productBestSeller' => $productBestSeller,
+            'productSpecialOffer' => $productSpecialOffer,
+            'productNewArrival' => $productNewArrival,
+            'productFeatured' => $productFeatured,
+            'homeSlider' => $sliders
         ]);
     }
 
     #[Route('/product/{slug}', name: 'product_details')]
-    public function show(?Product $product) : Response {
-        if (!$product){
-           return $this->redirectToRoute('home');
+    public function show(?Product $product): Response
+    {
+        if (!$product) {
+            return $this->redirectToRoute('home');
         }
 
         return $this->render("home/single_product.html.twig",
-        [
-            'product'=>$product,
+            [
+                'product' => $product,
+            ]);
+    }
+
+    #[Route('/shop', name: 'shop')]
+    public function shop(ProductRepository $repoProduct): Response
+    {
+        $products = $repoProduct->findAll();
+        return $this->render('home/shop.html.twig', [
+            'products' => $products
         ]);
     }
 }

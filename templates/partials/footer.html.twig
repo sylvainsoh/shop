@@ -10,21 +10,20 @@
                         <div class="logo">
                             <a href="index.html"><img src="{{ asset('assets/images/logo2.png') }}" alt="#"></a>
                         </div>
-                        <p class="text">Praesent dapibus, neque id cursus ucibus, tortor neque egestas augue,  magna eros eu erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis, accumsan porttitor, facilisis luctus, metus.</p>
-                        <p class="call">Got Question? Call us 24/7<span><a href="tel:123456789">+0123 456 789</a></span></p>
+                        <p class="text">Acheter vos articles sur notre site et soyez livré chez vous, nous disposons d'articles diversifiés qui pourrons vous satisfaire. </p>
+                        <p class="call">Une question ? Contactez-nous  24/7<span><a href="tel:123456789">+33 04 43 44 55</a></span></p>
                     </div>
                     <!-- End Single Widget -->
                 </div>
                 <div class="col-lg-2 col-md-6 col-12">
                     <!-- Single Widget -->
                     <div class="single-footer links">
-                        <h4>Information</h4>
+                        <h4>Informations</h4>
                         <ul>
-                            <li><a href="#">About Us</a></li>
-                            <li><a href="#">Faq</a></li>
-                            <li><a href="#">Terms & Conditions</a></li>
-                            <li><a href="#">Contact Us</a></li>
-                            <li><a href="#">Help</a></li>
+                            <li><a href="#">A propos</a></li>
+                            <li><a href="{{ path("app_cgu")}}">Conditions d'utilisation</a></li>
+                            <li><a href="#">Contactez-nous</a></li>
+                            <li><a href="#">FAQ</a></li>
                         </ul>
                     </div>
                     <!-- End Single Widget -->
@@ -32,13 +31,11 @@
                 <div class="col-lg-2 col-md-6 col-12">
                     <!-- Single Widget -->
                     <div class="single-footer links">
-                        <h4>Customer Service</h4>
+                        <h4>Service client</h4>
                         <ul>
-                            <li><a href="#">Payment Methods</a></li>
-                            <li><a href="#">Money-back</a></li>
-                            <li><a href="#">Returns</a></li>
-                            <li><a href="#">Shipping</a></li>
-                            <li><a href="#">Privacy Policy</a></li>
+                            <li><a href="#">Méthodes de paiement</a></li>
+                            <li><a href="#">Politique de confidentialité</a></li>
+                            <li><a href="#">Aide</a></li>
                         </ul>
                     </div>
                     <!-- End Single Widget -->
@@ -46,21 +43,20 @@
                 <div class="col-lg-3 col-md-6 col-12">
                     <!-- Single Widget -->
                     <div class="single-footer social">
-                        <h4>Get In Tuch</h4>
+                        <h4>Restons en contact</h4>
                         <!-- Single Widget -->
                         <div class="contact">
                             <ul>
-                                <li>NO. 342 - London Oxford Street.</li>
-                                <li>012 United Kingdom.</li>
+                                <li>Lomé, Togo</li>
+                                <li>Paris, France</li>
                                 <li>info@eshop.com</li>
-                                <li>+032 3456 7890</li>
+                                <li>+33 04 43 44 55</li>
                             </ul>
                         </div>
                         <!-- End Single Widget -->
                         <ul>
                             <li><a href="#"><i class="ti-facebook"></i></a></li>
                             <li><a href="#"><i class="ti-twitter"></i></a></li>
-                            <li><a href="#"><i class="ti-flickr"></i></a></li>
                             <li><a href="#"><i class="ti-instagram"></i></a></li>
                         </ul>
                     </div>
@@ -76,12 +72,17 @@
                 <div class="row">
                     <div class="col-lg-6 col-12">
                         <div class="left">
-                            <p>Copyright © 2020 <a href="http://www.wpthemesgrid.com" target="_blank">Wpthemesgrid</a>  -  All Rights Reserved.</p>
+                            <p>Copyright © {{ "now"|date("Y") }} Inspired from <a style="text-decoration: none" href="http://www.wpthemesgrid.com" target="_blank">  - Made by </a>
+                                <i class="fa fa-linkedin"></i>
+                                <a href="https://www.linkedin.com/in/sylvainsoh/" style="text-decoration: none">
+                                    Syl20
+                                </a>
+                            </p>
                         </div>
                     </div>
                     <div class="col-lg-6 col-12">
                         <div class="right">
-                            <img src="images/payments.png" alt="#">
+                            <img src="assets/images/payments.png" alt="#">
                         </div>
                     </div>
                 </div>

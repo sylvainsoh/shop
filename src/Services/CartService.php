@@ -93,7 +93,7 @@ class  CartService
                     'product' => $product
                 ];
                 $quantity_cart+=$quantity;
-                $subTotal+=$quantity*$product->getPrice();
+                $subTotal+=$quantity*($product->getPrice()/100);
             } else {
                 $this->deleteFromCart($id);
             }
