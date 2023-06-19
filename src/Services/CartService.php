@@ -88,6 +88,11 @@ class  CartService
         foreach ($cart as $id => $quantity) {
             $product = $this->repoProduct->find($id);
             if ($product) {
+                if ($quantity > $product->getQuantity()){
+                    $quantity=$product->getQuantity();
+                    $cart[$id] = $quantity;
+                    $this->updateCart($cart);
+                }
                 $fullCart["products"][] = [
                     "quantity" => $quantity,
                     'product' => $product

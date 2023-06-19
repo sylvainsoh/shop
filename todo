@@ -1,0 +1,14 @@
+A faire
+- Corriger sur la page shop le filtre catégries avec le second tru en dessous
+- L"envoi de mail en interne à la création de compte ne fonctionne pas pour le moment
+-Creer des modèles d'Emails ( Conformation passage de commande, inscription)
+
+
+
+
+---------------- Evolutions
+-Implémenter la mise à jour du stock global des produits dès lors qu'une commande est passée avec succès.
+-Implémenter la fonctionnalité avis clients pour permettre aux utilisateurs qui ont acheté un produit, de pouvoir le noter et ajouter un commentaire.
+-Pour rappel, tous les visiteurs peuvent consulter les avis d'un produit, mais pour laisser un commentaire, il faudra être connecté et avoir déjà acheté le produit.
+-Implémenter la fonctionnalité permettant aux utilisateurs de sélectionner plusieurs produits afin de les comparer.
+-Implémenter la fonctionnalité permettant à l'utilisateur de mettre à jour ses informations à partir de son espace personnel.

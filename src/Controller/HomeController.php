@@ -3,9 +3,12 @@
 namespace App\Controller;
 
 use App\Entity\Product;
+use App\Entity\SearchProduct;
+use App\Form\SearchProductType;
 use App\Repository\HomeSliderRepository;
 use App\Repository\ProductRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -46,11 +49,22 @@ class HomeController extends AbstractController
     }
 
     #[Route('/shop', name: 'shop')]
-    public function shop(ProductRepository $repoProduct): Response
+    public function shop(ProductRepository $repoProduct, Request $request): Response
     {
         $products = $repoProduct->findAll();
+
+        $search = new SearchProduct();
+        $form = $this->createForm(SearchProductType::class, $search);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()){
+            $products=$repoProduct->findWithSearch($search);
+        }
+
         return $this->render('home/shop.html.twig', [
-            'products' => $products
+            'products' => $products,
+            'search'=>$form->createView()
         ]);
     }
 }

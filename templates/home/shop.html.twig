@@ -3,38 +3,68 @@
 {% block title %}Bienvenue {% endblock %}
 
 {% block body %}
-       {{ include( "partials/title_section.html.twig", {'name' :'Shop sur EShop '}) }}
-
-       <div class="section">
-              <div class="container">
-                     <div class="row">
-                            <div class="col-lg-9">
-                                   <div class="row shop_container">
-                                          {%  for product in  products %}
-                                                 {{ include('partials/product.html.twig', {'product' : product}) }}
-                                          {% endfor  %}
-                                   </div>
+    {{ include( "partials/title_section.html.twig", {'name' :'Shop sur EShop '}) }}
+    <style>
+        .select2-container{
+            width: 100% !important;
+        }
+    </style>
+    <div class="section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-9">
+                    <div class="row shop_container">
+                        {% if not products %}
+                            <div class=" col-lg-9 text-center">
+                                Désolé aucun produit ne correspond à ces critères
                             </div>
-                            <div class="col-lg-3 order-lg-first mt-4 pt-2 mt-lg-0 pt-lg-0">
-                                   <div class="sidebar">
-                                          <div class="widget">
-                                                 <h5 class="widget_title">Categories</h5>
-
-                                          </div>
-                                          <div class="widget">
-                                                 <h5 class="widget_title">Prix</h5>
-
-                                          </div>
-                                          <div class="widget">
-                                                 <h5 class="widget_title">Tags</h5>
-
-                                          </div>
-                                          <button class="btn btn-border-fill btn-block"> Rechercher</button>
-                                   </div>
+                        {% endif %}
+                        {% for product in  products %}
+                            <div class="col-xl-3 col-lg-4 col-md-4 col-12">
+                                {{ include('partials/product.html.twig', {'product' : product}) }}
                             </div>
-                     </div>
-              </div>
-       </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="col-lg-3 order-lg-first mt-4 pt-2 mt-lg-0 pt-lg-0">
+                    <div class="sidebar">
+                        {{ form_start(search) }}
+                        <div class="widget">
+                            <h5 class="widget_title">Prix</h5>
+                            <div class="form-row">
+                                <div class="col-md-6">
+                                    {{ form_row(search.minprice) }}
+                                </div>
+                                <div class="col-md-6">
+                                    {{ form_row(search.maxprice) }}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="widget">
+                            <h5 class="widget_title">Tags</h5>
+                            {{ form_row(search.tags) }}
+                        </div>
+                        <div class="widget">
+                            <h5 class="widget_title">Categories</h5>
+                            {{ form_row(search.categories) }}
+                        </div>
+                        <button class="btn btn-border-fill btn-block"> Rechercher</button>
+                        {{ form_end(search) }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
 
+{% endblock %}
+
+{% block javascripts %}
+    <script>
+        $(document).ready(function (){
+            $('.js-categories-multiple').select2(
+
+            );
+        });
+    </script>
 {% endblock %}

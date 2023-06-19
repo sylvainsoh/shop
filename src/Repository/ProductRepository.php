@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Product;
+use App\Entity\SearchProduct;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -37,6 +38,31 @@ class ProductRepository extends ServiceEntityRepository
         if ($flush) {
             $this->getEntityManager()->flush();
         }
+    }
+
+    /**
+     * @return Product[]
+     */
+    public function findWithSearch(SearchProduct $search): array
+    {
+        $query= $this->createQueryBuilder('p');
+        if ($search->getMinPrice()){
+            $query=$query->andWhere('p.price > '.$search->getMinPrice()*100);
+        }
+        if ($search->getMaxPrice()){
+            $query=$query->andWhere('p.price < '.$search->getMaxPrice()*100);
+        }
+        if ($search->getTags()){
+            $query=$query->andWhere('p.tags like :tags')
+                ->setParameter('tags', "%{$search->getTags()}%");
+        }
+        if ($search->getCategories()){
+            $query=$query->join('p.category', 'c')
+                ->andWhere('c.id IN (:categories)')
+                ->setParameter('categories', $search->getCategories());
+        }
+
+        return $query->getQuery()->getResult();
     }
 
 //    /**
