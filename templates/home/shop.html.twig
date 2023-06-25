@@ -3,10 +3,13 @@
 {% block title %}Bienvenue {% endblock %}
 
 {% block body %}
-    {{ include( "partials/title_section.html.twig", {'name' :'Shop sur EShop '}) }}
+    {{ include( "partials/title_section.html.twig", {'name' :'Nos articles '}) }}
     <style>
-        .select2-container{
-            width: 100% !important;
+        body > div.section > div > div > div.col-lg-3.order-lg-first.mt-4.pt-2.mt-lg-0.pt-lg-0 > div > form > div:nth-child(3) > div > span:nth-child(4) {
+            display: none;
+        }
+        body > div.section > div > div > div.col-lg-3.order-lg-first.mt-4.pt-2.mt-lg-0.pt-lg-0 > div > form > div:nth-child(3) > div > span:nth-child(2) {
+            width: 262.5px !important;
         }
     </style>
     <div class="section">

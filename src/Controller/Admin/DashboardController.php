@@ -43,7 +43,7 @@ class DashboardController extends AbstractDashboardController
     public function configureDashboard(): Dashboard
     {
         return Dashboard::new()
-            ->setTitle('EShop Dashboard')
+            ->setTitle($_ENV['CLIENT_NAME'].' Dashboard')
             ->setLocales(['en', 'fr'])
             ->setLocales([
                 'en' => '🇬🇧 English',

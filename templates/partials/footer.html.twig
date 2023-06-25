@@ -7,11 +7,11 @@
                 <div class="col-lg-5 col-md-6 col-12">
                     <!-- Single Widget -->
                     <div class="single-footer about">
-                        <div class="logo">
-                            <a href="index.html"><img src="{{ asset('assets/images/logo2.png') }}" alt="#"></a>
-                        </div>
-                        <p class="text">Acheter vos articles sur notre site et soyez livré chez vous, nous disposons d'articles diversifiés qui pourrons vous satisfaire. </p>
-                        <p class="call">Une question ? Contactez-nous  24/7<span><a href="tel:123456789">+33 04 43 44 55</a></span></p>
+                        <p class="text">Achetez vos articles sur notre site et soyez livré chez vous, nous disposons d'articles diversifiés qui pourrons vous satisfaire. </p>
+                        <p class="call">Une question ? Contactez-nous<span>
+                                <a href="tel:{{ config.contact }}">{{ config.contact }}</a>
+                            </span>
+                        </p>
                     </div>
                     <!-- End Single Widget -->
                 </div>
@@ -23,7 +23,6 @@
                             <li><a href="#">A propos</a></li>
                             <li><a href="{{ path("app_cgu")}}">Conditions d'utilisation</a></li>
                             <li><a href="#">Contactez-nous</a></li>
-                            <li><a href="#">FAQ</a></li>
                         </ul>
                     </div>
                     <!-- End Single Widget -->
@@ -34,8 +33,7 @@
                         <h4>Service client</h4>
                         <ul>
                             <li><a href="#">Méthodes de paiement</a></li>
-                            <li><a href="#">Politique de confidentialité</a></li>
-                            <li><a href="#">Aide</a></li>
+                            <li><a href="#">Confidentialité</a></li>
                         </ul>
                     </div>
                     <!-- End Single Widget -->
@@ -47,10 +45,8 @@
                         <!-- Single Widget -->
                         <div class="contact">
                             <ul>
-                                <li>Lomé, Togo</li>
-                                <li>Paris, France</li>
-                                <li>info@eshop.com</li>
-                                <li>+33 04 43 44 55</li>
+                                <li>{{ config.adresse }}</li>
+                                <li>{{ config.email }}</li>
                             </ul>
                         </div>
                         <!-- End Single Widget -->
@@ -73,8 +69,7 @@
                     <div class="col-lg-6 col-12">
                         <div class="left">
                             <p>Copyright © {{ "now"|date("Y") }} Inspired from <a style="text-decoration: none" href="http://www.wpthemesgrid.com" target="_blank">  - Made by </a>
-                                <i class="fa fa-linkedin"></i>
-                                <a href="https://www.linkedin.com/in/sylvainsoh/" style="text-decoration: none">
+                                <a href="https://www.linkedin.com/in/sylvainsoh/" target="_blank" style="text-decoration: none" class="mainColor">
                                     Syl20
                                 </a>
                             </p>
@@ -82,7 +77,7 @@
                     </div>
                     <div class="col-lg-6 col-12">
                         <div class="right">
-                            <img src="assets/images/payments.png" alt="#">
+                            <img src="{{ asset("assets/images/payments.png") }}" alt="#">
                         </div>
                     </div>
                 </div>

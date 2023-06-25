@@ -1,8 +1,6 @@
 /* =====================================
-Template Name: Eshop
 Author Name: Naimur Rahman
 Author URI: http://www.wpthemesgrid.com/
-Description: Eshop - eCommerce HTML5 Template.
 Version:1.0
 ========================================*/
 /*=======================================

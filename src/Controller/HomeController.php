@@ -2,20 +2,28 @@
 
 namespace App\Controller;
 
+use App\Entity\Newsletter;
 use App\Entity\Product;
 use App\Entity\SearchProduct;
 use App\Form\SearchProductType;
+use App\Repository\ConfigRepository;
 use App\Repository\HomeSliderRepository;
+use App\Repository\NewsletterRepository;
 use App\Repository\ProductRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 class HomeController extends AbstractController
 {
+    public function __construct(
+        private RequestStack $requestStack,
+    ) {
+    }
     #[Route('/', name: 'app_home')]
-    public function index(ProductRepository $repoProduct, HomeSliderRepository $homeSliderRepository): Response
+    public function index(ProductRepository $repoProduct, HomeSliderRepository $homeSliderRepository, ConfigRepository $configRepository): Response
     {
         $sliders = $homeSliderRepository->findOneBy(['isDisplayed' => true]);
 
@@ -25,6 +33,12 @@ class HomeController extends AbstractController
         $productNewArrival = $repoProduct->findByIsNewArrival(1);
         $productFeatured = $repoProduct->findByIsFeatured(1);
 
+
+        $session = $this->requestStack->getSession();
+
+        $config=$configRepository->findAll();
+        $session->set('config', $config[0]);
+
         return $this->render('home/index.html.twig', [
             'products' => $products,
             'productBestSeller' => $productBestSeller,
@@ -33,6 +47,19 @@ class HomeController extends AbstractController
             'productFeatured' => $productFeatured,
             'homeSlider' => $sliders
         ]);
+    }
+
+    #[Route('/suscribeToNewsLetter', name: 'suscribeToNewsLetter')]
+    public function suscribeToNewsLetter(Request$request, NewsletterRepository $newsletterRepository): Response
+    {
+        $email=$request->get('email');
+        if ($email){
+            $newsletter=new Newsletter();
+            $newsletter->setEmail($email);
+            $newsletterRepository->save($newsletter,true);
+            $this->addFlash("new_newsletter","Votre abonnement a été enrégister avec succès");
+        }
+        return $this->redirectToRoute('app_home');
     }
 
     #[Route('/product/{slug}', name: 'product_details')]

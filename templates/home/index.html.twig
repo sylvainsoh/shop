@@ -6,9 +6,8 @@
    {% if homeSlider%}
        {{ include( "partials/home_slider.html.twig", {'slider' : homeSlider}) }}
    {% else %}
-       {{ include( "partials/title_section.html.twig", {'name' :'Bienvenue sur EShop '}) }}
+       {{ include( "partials/title_section.html.twig", {'name' :'Bienvenue '}) }}
    {% endif%}
-
     <!-- Start Small Banner  -->
     <section class="small-banner section">
         <div class="container-fluid">
@@ -18,11 +17,10 @@
                     <div class="single-banner">
                         <img height="600" width="370" src="assets/images/backOrange.jpg" alt="back Image">
                         <div class="content">
-                            <p>Collection Homme</p>
-                            <h3>Collection voyage<br>
-                                d'été
+                            <p>Collection</p>
+                            <h3>Collection<br>
                             </h3>
-                            <a href="#">Décourvir maintenant</a>
+                            <a href="{{ path('shop') }}">Décourvir maintenant</a>
                         </div>
                     </div>
                 </div>
@@ -32,9 +30,9 @@
                     <div class="single-banner">
                         <img height="600" width="370" src="assets/images/backOrange.jpg" alt="back Image">
                         <div class="content">
-                            <p>Collection de Sacs</p>
+                            <p>Collection</p>
                             <h3>Des sacs incroyables<br> 2023</h3>
-                            <a href="#">Voir</a>
+                            <a href="{{ path('shop') }}">Découvrir Maintenant</a>
                         </div>
                     </div>
                 </div>
@@ -46,7 +44,7 @@
                         <div class="content">
                             <p>Ventes rapides</p>
                             <h3>Mi-saison <br> jusqu'à <span>40%</span> de réductions </h3>
-                            <a href="#">Décourvir maintenant</a>
+                            <a href="{{ path('shop') }}">Décourvir maintenant</a>
                         </div>
                     </div>
                 </div>
@@ -225,14 +223,14 @@
                                     <div class="col-lg-6 col-md-6 col-12">
                                         <div class="list-image overlay">
                                             <img height="115" width="140" src="assets/uploads/products/{{ product.image}}" alt="#">
-                                            <a href="#" class="buy"><i class="fa fa-shopping-bag"></i></a>
+                                            <a href="{{path("cart_add",{'id':product.id})}}" class="buy"><i class="fa fa-shopping-bag"></i></a>
                                         </div>
                                     </div>
                                     <div class="col-lg-6 col-md-6 col-12 no-padding">
                                         <div class="content">
                                             <h4 class="title">
                                                 <a href="{{ path("product_details",{'slug' : product.slug}) }}">
-                                                    {{ product.neame }}
+                                                    <b>{{ product.neame }}</b>
                                                 </a>
                                             </h4>
                                             <p class="price with-discount">{{ product.price/100 }} Frs CFA</p>
@@ -260,7 +258,7 @@
                                     <div class="col-lg-6 col-md-6 col-12">
                                         <div class="list-image overlay">
                                             <img height="115" width="140" src="assets/uploads/products/{{ product.image}}" alt="#">
-                                            <a href="#" class="buy"><i class="fa fa-shopping-bag"></i></a>
+                                            <a href="{{path("cart_add",{'id':product.id})}}" class="buy"><i class="fa fa-shopping-bag"></i></a>
                                         </div>
                                     </div>
                                     <div class="col-lg-6 col-md-6 col-12 no-padding">
@@ -295,7 +293,7 @@
                                     <div class="col-lg-6 col-md-6 col-12">
                                         <div class="list-image overlay">
                                             <img height="115" width="140" src="assets/uploads/products/{{ product.image}}" alt="#">
-                                            <a href="#" class="buy"><i class="fa fa-shopping-bag"></i></a>
+                                            <a href="{{path("cart_add",{'id':product.id})}}" class="buy"><i class="fa fa-shopping-bag"></i></a>
                                         </div>
                                     </div>
                                     <div class="col-lg-6 col-md-6 col-12 no-padding">
@@ -332,12 +330,14 @@
                     <div class="col-lg-6 col-12 padding-left">
                         <div class="content">
                             <div class="heading-block">
-                                <p class="small-title">Deal du jour</p>
+                                <p class="small-title">Notre meilleur deal de la semaine !</p>
                                 <h3 class="title">Belle robe pour femme</h3>
                                 <p class="text">Meilleure sélection de produits pour vous. Meilleure sélection de produits pour vous. Meilleure sélection de produits pour vous. Meilleure sélection de produits pour vous. Meilleure sélection de produits pour vous. Meilleure sélection de produits pour vous.  </p>
                                 <h1 class="price">1200 Frs CFA <s>1990 Frs CFA</s></h1>
                                 <div class="coming-time">
-                                    <div class="clearfix" data-countdown="2023/03/30"></div>
+                                    {% set currentDate = "now"|date("Y-m-d") %}
+                                    {% set futureDate = currentDate|date_modify("+1 week") %}
+                                    <div class="clearfix" data-countdown="{{ futureDate|date("Y/m/d") }}"></div>
                                 </div>
                             </div>
                         </div>
@@ -350,7 +350,7 @@
 
 
     <!-- Start Shop Blog  -->
-    <section class="shop-blog section">
+    <section class="shop-blog section hide">
         <div class="container">
             <div class="row">
                 <div class="col-12">
@@ -398,6 +398,39 @@
     </section>
     <!-- End Shop Blog  -->
 
+    <!-- Start Shop Newsletter  -->
+    <section class="shop-newsletter section">
+        <div class="container">
+            <div class="inner-top">
+                <div class="row">
+                    {% for message in app.flashes('new_newsletter') %}
+                        <div class="col-lg-8 offset-lg-2 col-12 text-center">
+                            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                {{ message }}
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                        </div>
+                    {%endfor %}
+                    <div class="col-lg-8 offset-lg-2 col-12">
+                        <!-- Start Newsletter Inner -->
+                        <div class="inner">
+                            <h4>S'abonner au mailling</h4>
+                            <p> Abonnez-vous à notre newsletter 😊 et recevez occasionnellement des <span>bons de réduction</span> sur un de vos achats.</p>
+                            <form action="{{ path('suscribeToNewsLetter') }}" method="POST" target="_blank" class="newsletter-inner">
+                                <input name="email" placeholder="Votre addresse email" required="" type="email">
+                                <button class="btn">Je m'abonne !</button>
+                            </form>
+                        </div>
+                        <!-- End Newsletter Inner -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End Shop Newsletter -->
+
     <!-- Start Shop Services Area -->
     <section class="shop-services section home">
         <div class="container">
@@ -407,16 +440,16 @@
                     <div class="single-service">
                         <i class="ti-rocket"></i>
                         <h4>Livraison rapide</h4>
-                        <p>Moins chère</p>
+                        <p>A prix abordable</p>
                     </div>
                     <!-- End Single Service -->
                 </div>
                 <div class="col-lg-3 col-md-6 col-12">
                     <!-- Start Single Service -->
                     <div class="single-service">
-                        <i class="ti-reload"></i>
+                        <i class="ti-car"></i>
                         <h4>Livraison</h4>
-                        <p>Sur toute l'étendue du territoire</p>
+                        <p>Disponible à l'internationnal</p>
                     </div>
                     <!-- End Single Service -->
                 </div>
@@ -442,30 +475,5 @@
         </div>
     </section>
     <!-- End Shop Services Area -->
-
-
-
-    <!-- Start Shop Newsletter  -->
-    <section class="shop-newsletter section">
-        <div class="container">
-            <div class="inner-top">
-                <div class="row">
-                    <div class="col-lg-8 offset-lg-2 col-12">
-                        <!-- Start Newsletter Inner -->
-                        <div class="inner">
-                            <h4>Newsletter</h4>
-                            <p> Abonnez-vous à notre newsletter et recevez <span>10%</span> sur un de vos achats.</p>
-                            <form action="" method="POST" target="_blank" class="newsletter-inner">
-                                <input name="email" placeholder="Votre addresse email" required="" type="email">
-                                <button class="btn">Subscribe</button>
-                            </form>
-                        </div>
-                        <!-- End Newsletter Inner -->
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- End Shop Newsletter -->
 
 {% endblock %}

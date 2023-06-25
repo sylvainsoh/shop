@@ -23,14 +23,15 @@
         </a>
         <div class="button-head">
             <div class="product-action">
-                <a href="{{ path("product_details",{'slug' : product.slug}) }}" title="Aperçu"><i
-                            class=" ti-eye"></i><span>Voir</span></a>
-                <a title="Ajouter à la liste d'envies" href="{{ path("cart_add",{'id':product.id}) }}"><i
-                            class=" ti-heart "></i><span>Ajouter à la liste d'envies</span></a>
-                <a title="Comparer" href="#"><i class="ti-bar-chart-alt"></i><span>Comparer</span></a>
+                <a href="{{ path("product_details",{'slug' : product.slug}) }}" title="Aperçu">
+                    <i class=" ti-eye"></i><span>Voir</span>
+                </a>
             </div>
             <div class="product-action-2">
-                <a title="Add to cart" href="{{ path("cart_add",{'id':product.id}) }}">Ajouter au panier</a>
+                <a title="Ajouter au panier" href="{{ path("cart_add",{'id':product.id}) }}">
+                    <i class="ti-shopping-cart"></i>
+                    Ajouter au panier
+                </a>
             </div>
         </div>
     </div>

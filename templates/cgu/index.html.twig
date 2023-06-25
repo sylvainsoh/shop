@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %} Conditions générales d'utilisation | Eshop{% endblock %}
+{% block title %} Conditions générales d'utilisation |  {{config.clientName}}{% endblock %}
 
 {% block body %}
 
@@ -10,26 +10,26 @@
         <div class="row">
             <div class="col-lg-6 offset-3 ">
                 <h2 class="text-center">
-                    Conditions générales d'utilisation du site Eshop
+                    Conditions générales d'utilisation du site {{config.clientName}}
                 </h2>
                 <div class="text-justify">
                     <hr>
                     <ol>
                         <li><p>Introduction
-                                Le site Eshop est un site de commerce en ligne offrant des produits à la vente. En
+                                Le site {{config.clientName}} est un site de commerce en ligne offrant des produits à la vente. En
                                 accédant
                                 ou en utilisant le site, vous acceptez les conditions générales d'utilisation
                                 suivantes.</p>
                         </li>
                         <li><p>Modification des conditions générales d'utilisation
-                                Eshop se réserve le droit de modifier ces conditions générales d'utilisation à tout
+                             {{config.clientName}} se réserve le droit de modifier ces conditions générales d'utilisation à tout
                                 moment
                                 sans préavis. Il est de votre responsabilité de vérifier régulièrement ces conditions
                                 pour
                                 vous assurer que vous êtes au courant des modifications.</p></li>
                         <li><p>Accès au site
-                                Eshop s'efforce de rendre le site disponible en continu, mais ne garantit pas une
-                                disponibilité ininterrompue. Eshop peut suspendre, interrompre ou limiter l'accès à tout
+                             {{config.clientName}} s'efforce de rendre le site disponible en continu, mais ne garantit pas une
+                                disponibilité ininterrompue.  {{config.clientName}} peut suspendre, interrompre ou limiter l'accès à tout
                                 ou
                                 partie du site pour des raisons de maintenance, de mise à jour ou pour toute autre
                                 raison.</p></li>
@@ -73,12 +73,12 @@
                         <li><p>Contact
                                 Si vous avez des questions ou des commentaires concernant les conditions générales
                                 d'utilisation, veuillez nous contacter à l'adresse email suivante : <a
-                                        href="mailto:contact@eshop.com" target="_new">contact@Eshop.com</a>.</p></li>
+                                        href="mailto:{{config.email}}" target="_new">{{config.email}}</a>.</p></li>
                     </ol>
                 </div>
                 <div>
                     <p>
-                        En accédant et en utilisant le site Eshop, vous acceptez de vous conformer à ces conditions
+                        En accédant et en utilisant le site {{config.clientName}}, vous acceptez de vous conformer à ces conditions
                         générales d'utilisation
                     </p>
                 </div>

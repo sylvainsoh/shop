@@ -8,7 +8,7 @@
                     </div>
                     <div class="contact_text">
                         <span>Addresse</span>
-                        <p>3 Rue Léon Gambetta, 59260 Hellemmes</p>
+                        <p>{{ config.adresse }}</p>
                     </div>
                 </div>
             </div>
@@ -20,7 +20,9 @@
                     <div class="contact_text">
                         <span>Addresse Email</span>
                         <p>
-                            <a href="mailto:info@sitename.com">contact@eshop.fr </a>
+                            <a href="mailto:{{ config.email }}">
+                            {{ config.email }}
+                            </a>
                         </p>
                     </div>
                 </div>
@@ -32,7 +34,7 @@
                     </div>
                     <div class="contact_text">
                         <span>Numero</span>
-                        <p>(+33) 7 52 15 25 60</p>
+                        <p>{{ config.contact }}</p>
                     </div>
                 </div>
             </div>

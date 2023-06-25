@@ -21,7 +21,7 @@ class SearchProductType extends AbstractType
                 'required'=>false,
                 'multiple'=>true,
                 'attr'=>[
-                    'class'=> 'form-control js-categories-multiple'
+                    'class'=> 'js-categories-multiple'
                 ]
             ])
             ->add('minprice', IntegerType::class, [

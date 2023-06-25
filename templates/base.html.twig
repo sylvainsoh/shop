@@ -1,3 +1,4 @@
+{% set config = app.session.get('config') %}
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,15 +9,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- Title Tag  -->
-    <title>{% block title %}Shopping{% endblock %} | EShop</title>
+    <title>{% block title %}Shopping{% endblock %} | {{ config.clientName }}</title>
     <!-- Title Tag  -->
 
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="{{ asset("assets/images/favicon.png") }}">
     <!-- Web Font -->
     <link href="https://fonts.googleapis.com/css?family=Poppins:200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&display=swap" rel="stylesheet">
-
-    <!-- StyleSheet -->
 
     <!-- Bootstrap -->
     <link rel="stylesheet" href="{{ asset("assets/css/bootstrap.css") }}">
@@ -39,7 +38,11 @@
     <!-- Slicknav -->
     <link rel="stylesheet" href="{{ asset("assets/css/slicknav.min.css") }}">
 
-    <!-- Eshop StyleSheet -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300&display=swap" rel="stylesheet">
+
+
     <link rel="stylesheet" href="{{ asset("assets/css/reset.css") }}">
     <link rel="stylesheet" href="{{ asset("assets/style.css") }}">
     <link rel="stylesheet" href="{{ asset("assets/css/responsive.css") }}">
@@ -51,8 +54,14 @@
         {{ encore_entry_link_tags('app') }}
     {% endblock %}
 
-
 </head>
+
+<style>
+body{
+    font-family: 'Ubuntu',serif !important;
+}
+</style>
+
 <body>
 <!-- Preloader -->
 <div class="preloader" style="display: none">
