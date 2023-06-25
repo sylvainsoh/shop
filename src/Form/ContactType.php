@@ -43,6 +43,7 @@ class ContactType extends AbstractType
                 'label' => "Votre message",
                 'attr' => [
                     'placeholder' => "...",
+                    'rows'=>8
                 ],
             ]);
     }

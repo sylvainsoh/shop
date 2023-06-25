@@ -28,21 +28,21 @@ class SearchProductType extends AbstractType
                 'required'=>false,
                 'label'=>false,
                 'attr'=>[
-                    'placeholder'=>'min ...'
+                    'placeholder'=>'Min ...'
                 ]
             ])
             ->add('maxprice', IntegerType::class, [
                 'required'=>false,
                 'label'=>false,
                 'attr'=>[
-                    'placeholder'=>'max ...'
+                    'placeholder'=>'Max ...'
                 ]
             ])
             ->add('tags', TextType::class, [
                 'label'=>false,
                 'required'=>false,
                 'attr'=>[
-                    'placeholder'=>'tags...'
+                    'placeholder'=>'Tags...'
                 ]
             ])
         ;

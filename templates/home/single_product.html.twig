@@ -4,7 +4,7 @@
 
 {% block body %}
 
-    {{ include( "partials/title_section.html.twig", {'name' :'Détail produit'}) }}
+    {{ include( "partials/title_section.html.twig", {'name' :'Détail produit '}) }}
 
     <div class="container ">
         <div class="section">
@@ -26,7 +26,7 @@
                     <div class="col-lg-6 col-md-6">
                         <div class="pr_detail">
                             <div class="product_description">
-                                <h4 class="product_title"><a href="#">{{ product.neame }}</a></h4>
+                                <h4 class="product_title"><a href="#"><b>{{ product.neame }}</b></a></h4>
                                 <div class="product_price">
                                     <span class="price">{{ product.price/100 }} Frs CFA</span>
                                 </div>
@@ -34,7 +34,6 @@
                                     <div class="rating">
                                         <div class="product_rate" style="width:80%"></div>
                                     </div>
-                                    <span class="rating_num">(21)</span> Avis
                                 </div>
                                 <div class="pr_desc">
                                     <p>
@@ -43,7 +42,9 @@
                                 </div>
                                 <div class="product_sort_info">
                                     <ul>
-                                        <li><i class="linearicons-bag-dollar"></i> Paiement à la livraison possible</li>
+                                        <li>
+                                            <i class="linearicons-bag-dollar"></i>
+                                        </li>
                                     </ul>
                                 </div>
                             </div>
@@ -60,7 +61,7 @@
                             </div>
                             <hr/>
                             <ul class="product-meta">
-                                <li>ID: <a href="#">  {{ product.id }}</a></li>
+                                <li>Reference: <a href="#"> #P{{ product.id }}</a></li>
                                 <li>Categorie:
                                     {% for category in  product.category %}
                                         <a href="#">  {{ category.name }}</a> &nbsp;
@@ -69,7 +70,7 @@
                                 <li>Tags: {{ product.tags }}</li>
                             </ul>
 
-                            <div class="product_share">
+                            <div class="product_share hide">
                                 <span>Partager:</span>
                                 <ul class="d-inline">
                                     <li><a href="#"><i class="fa fa-facebook"></i></a></li>
@@ -99,7 +100,7 @@
                                        href="#Additional-info" role="tab" aria-controls="Additional-info"
                                        aria-selected="false">Informations supplémentaires</a>
                                 </li>
-                                <li class="nav-item">
+                                <li class="nav-item hide">
                                     <a class="nav-link" id="Reviews-tab" data-toggle="tab" href="#Reviews" role="tab"
                                        aria-controls="Reviews" aria-selected="false">Avis (2)</a>
                                 </li>
@@ -114,11 +115,11 @@
                                 <div class="tab-pane fade" id="Additional-info" role="tabpanel"
                                      aria-labelledby="Additional-info-tab">
                                     <p>
-                                        {{ product.moreInformations }}
+                                        {{ product.moreInformations | raw}}
                                     </p>
                                 </div>
 
-                                <div class="tab-pane fade" id="Reviews" role="tabpanel" aria-labelledby="Reviews-tab">
+                                <div class="tab-pane fade hide" id="Reviews" role="tabpanel" aria-labelledby="Reviews-tab">
                                     <div class="comments">
                                         <h5 class="product_tab_title">2 Review For <span>{{ product.neame }}</span>
                                         </h5>

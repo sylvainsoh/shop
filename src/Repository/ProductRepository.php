@@ -43,7 +43,7 @@ class ProductRepository extends ServiceEntityRepository
     /**
      * @return Product[]
      */
-    public function findWithSearch(SearchProduct $search): array
+    public function findWithSearch(SearchProduct $search, $searchBy=null): array
     {
         $query= $this->createQueryBuilder('p');
         if ($search->getMinPrice()){
@@ -60,6 +60,10 @@ class ProductRepository extends ServiceEntityRepository
             $query=$query->join('p.category', 'c')
                 ->andWhere('c.id IN (:categories)')
                 ->setParameter('categories', $search->getCategories());
+        }
+        if ($searchBy){
+            $query=$query->andWhere('p.neame like :name')
+                ->setParameter('name', "%{$searchBy}%");
         }
 
         return $query->getQuery()->getResult();

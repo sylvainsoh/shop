@@ -5,6 +5,7 @@ namespace App\Controller\Account;
 use App\Entity\Config;
 use App\Entity\User;
 use App\Form\RegistrationFormType;
+use App\Repository\ConfigRepository;
 use App\Repository\UserRepository;
 use App\Security\EmailVerifier;
 use Doctrine\ORM\EntityManagerInterface;
@@ -28,8 +29,9 @@ class RegistrationController extends AbstractController
     }
 
     #[Route('/register', name: 'app_register')]
-    public function register(Request $request, UserPasswordHasherInterface $userPasswordHasher, EntityManagerInterface $entityManager, Config $config): Response
+    public function register(Request $request, UserPasswordHasherInterface $userPasswordHasher, EntityManagerInterface $entityManager, ConfigRepository $configRepository): Response
     {
+        $config=$configRepository->findAll()[0];
         $user = new User();
         $form = $this->createForm(RegistrationFormType::class, $user);
         $form->handleRequest($request);

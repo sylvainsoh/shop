@@ -20,8 +20,10 @@ class HomeController extends AbstractController
 {
     public function __construct(
         private RequestStack $requestStack,
-    ) {
+    )
+    {
     }
+
     #[Route('/', name: 'app_home')]
     public function index(ProductRepository $repoProduct, HomeSliderRepository $homeSliderRepository, ConfigRepository $configRepository): Response
     {
@@ -36,7 +38,7 @@ class HomeController extends AbstractController
 
         $session = $this->requestStack->getSession();
 
-        $config=$configRepository->findAll();
+        $config = $configRepository->findAll();
         $session->set('config', $config[0]);
 
         return $this->render('home/index.html.twig', [
@@ -49,15 +51,34 @@ class HomeController extends AbstractController
         ]);
     }
 
-    #[Route('/suscribeToNewsLetter', name: 'suscribeToNewsLetter')]
-    public function suscribeToNewsLetter(Request$request, NewsletterRepository $newsletterRepository): Response
+    #[Route('/search', name: 'search')]
+    public function search(ProductRepository $repoProduct, Request $request): Response
     {
-        $email=$request->get('email');
-        if ($email){
-            $newsletter=new Newsletter();
+        $products = $repoProduct->findAll();
+        $searchCharacter = $request->get('search');
+        $search = new SearchProduct();
+
+        $form = $this->createForm(SearchProductType::class, $search);
+
+        if ($searchCharacter) {
+            $products = $repoProduct->findWithSearch($search, $searchCharacter);
+        }
+
+        return $this->render('home/shop.html.twig', [
+            'products' => $products,
+            'search' => $form->createView()
+        ]);
+    }
+
+    #[Route('/suscribeToNewsLetter', name: 'suscribeToNewsLetter')]
+    public function suscribeToNewsLetter(Request $request, NewsletterRepository $newsletterRepository): Response
+    {
+        $email = $request->get('email');
+        if ($email) {
+            $newsletter = new Newsletter();
             $newsletter->setEmail($email);
-            $newsletterRepository->save($newsletter,true);
-            $this->addFlash("new_newsletter","Votre abonnement a été enrégister avec succès");
+            $newsletterRepository->save($newsletter, true);
+            $this->addFlash("new_newsletter", "Votre abonnement a été enrégister avec succès");
         }
         return $this->redirectToRoute('app_home');
     }
@@ -85,13 +106,13 @@ class HomeController extends AbstractController
 
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()){
-            $products=$repoProduct->findWithSearch($search);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $products = $repoProduct->findWithSearch($search);
         }
 
         return $this->render('home/shop.html.twig', [
             'products' => $products,
-            'search'=>$form->createView()
+            'search' => $form->createView()
         ]);
     }
 }

@@ -51,7 +51,10 @@
                             <h5 class="widget_title">Categories</h5>
                             {{ form_row(search.categories) }}
                         </div>
-                        <button class="btn btn-border-fill btn-block"> Rechercher</button>
+                        <button class="btn btn-block"> Rechercher</button>
+                        <div class="text-center">
+                            <a href="{{ path("shop") }}"> Réinitialiser</a>
+                        </div>
                         {{ form_end(search) }}
                     </div>
                 </div>
