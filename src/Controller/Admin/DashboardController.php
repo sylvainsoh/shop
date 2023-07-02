@@ -9,6 +9,8 @@ use App\Entity\Contact;
 use App\Entity\HomeSlider;
 use App\Entity\Order;
 use App\Entity\Product;
+use App\Entity\User;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Assets;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractDashboardController;
@@ -43,17 +45,20 @@ class DashboardController extends AbstractDashboardController
     public function configureDashboard(): Dashboard
     {
         return Dashboard::new()
-            ->setTitle($_ENV['CLIENT_NAME'].' Dashboard')
-            ->setLocales(['en', 'fr'])
+            ->setTitle('Tableau de bord')
             ->setLocales([
-                'en' => '🇬🇧 English',
-                'fr' => '🇫🇷 French'
-            ]);
+                'fr' => '🇫🇷 French',
+                'en' => '🇬🇧 English'
+            ])
+            ->generateRelativeUrls()
+            ->renderContentMaximized()
+            //->renderSidebarMinimized()
+            ->setFaviconPath('/assets/images/favicon.png');
     }
 
     public function configureMenuItems(): iterable
     {
-        yield MenuItem::linkToDashboard('Dashboard', 'fa fa-home');
+        yield MenuItem::linkToDashboard('Accueil', 'fa fa-home');
         yield MenuItem::linkToCrud('Commandes', 'fa fa-shopping-bag',Order::class);
         yield MenuItem::linkToCrud('Paniers', 'fa fa-shopping-basket',Cart::class);
         yield MenuItem::linkToCrud('Produits', 'fa fa-shopping-cart',Product::class);
@@ -61,5 +66,11 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToCrud('Livreur', 'fa fa-truck',Carrier::class);
         yield MenuItem::linkToCrud('Contact', 'fa fa-envelope',Contact::class);
         yield MenuItem::linkToCrud('Slider accueil', 'fa fa-images',HomeSlider::class);
+        yield MenuItem::linkToCrud('Comptes', 'fa fa-user',User::class);
+    }
+
+    public function configureAssets(): Assets
+    {
+        return Assets::new()->addCssFile('css/admin.css');
     }
 }

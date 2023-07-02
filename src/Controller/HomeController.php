@@ -10,7 +10,9 @@ use App\Repository\ConfigRepository;
 use App\Repository\HomeSliderRepository;
 use App\Repository\NewsletterRepository;
 use App\Repository\ProductRepository;
+use PhpParser\Node\Scalar\String_;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Bundle\MakerBundle\Str;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpFoundation\Response;
@@ -114,5 +116,16 @@ class HomeController extends AbstractController
             'products' => $products,
             'search' => $form->createView()
         ]);
+    }
+    #[Route("/whatsapp-chat/{productSlug}", name: 'whatsapp_chat')]
+    public function startChat(string $productSlug): Response
+    {
+        $contact=$this->requestStack->getSession()->get('config')->getContact();
+        $productUrl=$_ENV['MAIN_DOMAIN']."/product/".$productSlug;
+
+        $whatsappUrl = 'https://api.whatsapp.com/send?phone='.$contact.'&text=' . rawurlencode('🛒 Je voudrais acheter ce produit -> ' . $productUrl);
+
+        // Redirigez l'utilisateur vers l'URL WhatsApp
+        return $this->redirect($whatsappUrl);
     }
 }

@@ -401,7 +401,7 @@ Version:1.0
 	display:none;
 }
 .slicknav_nav li:hover a{
-	color:#F7941D;
+	color:var(--main-color);;
 	background:transparent;
 }
 .slicknav_nav li:hover{
@@ -415,7 +415,7 @@ Version:1.0
 	background:transparent;
 }
 .slicknav_nav li .dropdown li a:hover{
-	color:#F7941D;
+	color:var(--main-color);;
 	background:transparent;
 }
 .slicknav_nav li .slicknav_item{
@@ -431,12 +431,12 @@ Version:1.0
 	padding-bottom:0px;
 }
 .slicknav_menu .slicknav_icon-bar {
-	background-color: #F7941D;
+	background-color: var(--main-color);;
 	box-shadow: none;
 	text-shadow: none;
 }
 .slicknav_nav .slicknav_arrow{
-	color:#F7941D;
+	color:var(--main-color);;
 }
 .slicknav_menu .slicknav_icon-bar {
 	display: block;
@@ -882,7 +882,7 @@ Version:1.0
 	width: 50%;
 	height: 100%;
 	border-bottom: 1px solid #e6ebee;
-	background: #F7941D;
+	background: var(--main-color);;
 	color: #fff;
 	border: none;
 }
@@ -1114,7 +1114,7 @@ Version:1.0
 	display:none;
 }
 .slicknav_nav li:hover a{
-	color:#F7941D;
+	color:var(--main-color);;
 	background:transparent;
 }
 .slicknav_nav li:hover{
@@ -1128,7 +1128,7 @@ Version:1.0
 	background:transparent;
 }
 .slicknav_nav li .dropdown li a:hover{
-	color:#F7941D;
+	color:var(--main-color);;
 	background:transparent;
 }
 .slicknav_nav li .slicknav_item{
@@ -1144,12 +1144,12 @@ Version:1.0
 	padding-bottom:0px;
 }
 .slicknav_menu .slicknav_icon-bar {
-	background-color: #F7941D;
+	background-color: var(--main-color);;
 	box-shadow: none;
 	text-shadow: none;
 }
 .slicknav_nav .slicknav_arrow{
-	color:#F7941D;
+	color:var(--main-color);;
 }
 .slicknav_menu .slicknav_icon-bar {
 	display: block;

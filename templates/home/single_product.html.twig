@@ -1,10 +1,10 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Détail produit{% endblock %}
+{% block title %}Détail de l'article {{ product.neame }}{% endblock %}
 
 {% block body %}
 
-    {{ include( "partials/title_section.html.twig", {'name' :'Détail produit '}) }}
+    {{ include( "partials/title_section.html.twig", {'name' :'Article - '~product.neame}) }}
 
     <div class="container ">
         <div class="section">
@@ -54,6 +54,10 @@
                                     <a class="btn btn-primary text-white" href="{{path("cart_add",{'id':product.id})}}">
                                         <i class="fa fa-cart-plus" ></i>
                                         Ajouter au panier
+                                    </a>
+                                    <a class="btn btn-success text-white" style="background-color: #02a884" href="{{ path('whatsapp_chat', {'productSlug': product.slug}) }}">
+                                        <i class="fa fa-whatsapp" ></i>
+                                        Acheter par WhatsApp
                                     </a>
                                     <a class="add_compare" href="#"><i class="icon-shuffle"></i></a>
                                     <a class="add_wishlist" href="#"><i class="icon-heart"></i></a>

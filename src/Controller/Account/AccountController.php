@@ -15,7 +15,6 @@ class AccountController extends AbstractController
     {
         $orders = $orderRepository->findBy(
             [
-                'isPaid' => true,
                 'user' => $this->getUser()
             ],
             [

@@ -16,7 +16,7 @@ class StripeSuccessPayementController extends AbstractController
     public function index(?Order $order, CartService $cartService, EntityManagerInterface $manager, StockManagerService $stockManager): Response
     {
        if (!$order || $order->getUser()!==$this->getUser()){
-           return $this->redirectToRoute('app_home');
+           //return $this->redirectToRoute('app_home');
        }
 
        if (!$order->isIsPaid()){

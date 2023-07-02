@@ -37,9 +37,20 @@ Version:1.0
 :root{
     --main-color: #F7941D;
 }
-
+.nav-tabs {
+    border: none !important;
+}
+.nav-tabs .nav-item {
+    margin-bottom: 10px !important;
+}
 .mainColor{
     color: var(--main-color) !important;
+}
+body > div.section > div > div > div.col-lg-3.col-md-4.col-12 > div > form > div:nth-child(2) > div > span:nth-child(4) > span.selection > span {
+    display: none;
+}
+body > div.section > div > div > div.col-lg-3.col-md-4.col-12 > div > form > div:nth-child(2) > div > span:nth-child(2){
+    width: 100% !important;
 }
 .hide{
     display: none;
@@ -907,7 +918,7 @@ Version:1.0
     color: #fff;
     background: transparent;
     position: relative;
-    background: #f7941d;
+    background: var(--main-color);;
 }
 
 .header.shop .all-category h3 {
@@ -1245,7 +1256,7 @@ Version:1.0
     position: absolute;
     top: -7px;
     right: -8px;
-    background: #f6931d;
+    background: var(--main-color);
     width: 18px;
     height: 18px;
     line-height: 18px;
@@ -2103,7 +2114,7 @@ Version:1.0
 }
 
 .single-product .product-img a span.price-dec {
-    background-color: #f6931d;
+    background-color: var(--main-color);
     display: inline-block;
     font-size: 11px;
     color: #fff;
@@ -3119,7 +3130,7 @@ Version:1.0
     top: 9px;
     height: 7px;
     width: 7px;
-    background: #f7941d;
+    background: var(--main-color);;
     border-radius: 50%;
 }
 
@@ -3464,7 +3475,7 @@ Version:1.0
 .shop-home-list .single-list .content .price {
     margin-top: 15px;
     font-weight: 500;
-    background: #f7941d;
+    background: var(--main-color);;
     display: inline-block;
     color: #fff;
     padding: 2px 18px;
@@ -5799,7 +5810,7 @@ Version:1.0
 }
 
 .footer .about .call a {
-    color: #f7941d;
+    color: var(--main-color);;
     font-size: 20px;
     font-weight: 600;
 }

@@ -29,8 +29,10 @@
             </div>
             <div class="product-action-2">
                 <a title="Ajouter au panier" href="{{ path("cart_add",{'id':product.id}) }}">
-                    <i class="ti-shopping-cart"></i>
-                    Ajouter au panier
+                    <i class="ti-shopping-cart"></i>Panier
+                </a>
+                <a title="Acheter par WhatsApp" href="{{ path('whatsapp_chat', {'productSlug': product.slug}) }}">
+                    <i class="fa fa-whatsapp text-success"></i> WhatsApp
                 </a>
             </div>
         </div>

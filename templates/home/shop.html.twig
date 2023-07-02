@@ -1,9 +1,9 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Bienvenue {% endblock %}
+{% block title %}Découvrez nos beaux articles {% endblock %}
 
 {% block body %}
-    {{ include( "partials/title_section.html.twig", {'name' :'Nos articles '}) }}
+    {{ include( "partials/title_section.html.twig", {'name' :'Nos beaux articles '}) }}
     <style>
         body > div.section > div > div > div.col-lg-3.order-lg-first.mt-4.pt-2.mt-lg-0.pt-lg-0 > div > form > div:nth-child(3) > div > span:nth-child(4) {
             display: none;
@@ -15,47 +15,70 @@
     <div class="section">
         <div class="container">
             <div class="row">
-                <div class="col-lg-9">
-                    <div class="row shop_container">
+                <div class="col-lg-3 col-md-4 col-12">
+                    <div class="shop-sidebar">
+                        <!-- Single Widget -->
+                        {{ form_start(search) }}
+                        <div class="single-widget category">
+                            <h3 class="title">Filtres</h3>
+                            <div class="sidebar">
+                                <div class="widget">
+                                    <h5 class="widget_title">Prix</h5>
+                                    <div class="form-row">
+                                        <div class="col-md-6">
+                                            {{ form_row(search.minprice) }}
+                                        </div>
+                                        <div class="col-md-6">
+                                            {{ form_row(search.maxprice) }}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--/ End Single Widget -->
+                        <!-- Single Widget -->
+                        <div class="single-widget recent-post">
+                            <h3 class="title">Catégories</h3>
+                            {{ form_row(search.categories) }}
+                        </div>
+                        <div class="single-widget recent-post">
+                            <h3 class="title">Tag</h3>
+                            {{ form_row(search.tags) }}
+                        </div>
+                        <!--/ End Single Widget -->
+                        <!-- Single Widget -->
+                        <div class="single-widget category">
+                            <button class="btn btn-block"> Rechercher</button>
+                            <div class="text-center">
+                                <a href="{{ path("shop") }}"> Réinitialiser</a>
+                            </div>
+                        </div>
+                        <!--/ End Single Widget -->
+                        {{ form_end(search) }}
+                    </div>
+                </div>
+                <div class="col-lg-9 col-md-8 col-12">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="shop-top">
+                                 Tous les articles disponibles. Choisissez vos articles et contactez nous directement . Paiement possible par
+                                <img src="https://vemianou.com/wp-content/uploads/2023/04/logo-flooz.jpg" style="height: 30px;">
+                                <img src="https://togocom.tg/wp-content/uploads/2020/08/Logo_TMoney_Togocom_New1.png" style="height: 40px;">
+                            </div>
+                            <!--/ End Shop Top -->
+                        </div>
+                    </div>
+                    <div class="row">
                         {% if not products %}
                             <div class=" col-lg-9 text-center">
                                 Désolé aucun produit ne correspond à ces critères
                             </div>
                         {% endif %}
                         {% for product in  products %}
-                            <div class="col-xl-3 col-lg-4 col-md-4 col-12">
+                            <div class="col-lg-4 col-md-6 col-12">
                                 {{ include('partials/product.html.twig', {'product' : product}) }}
                             </div>
                         {% endfor %}
-                    </div>
-                </div>
-                <div class="col-lg-3 order-lg-first mt-4 pt-2 mt-lg-0 pt-lg-0">
-                    <div class="sidebar">
-                        {{ form_start(search) }}
-                        <div class="widget">
-                            <h5 class="widget_title">Prix</h5>
-                            <div class="form-row">
-                                <div class="col-md-6">
-                                    {{ form_row(search.minprice) }}
-                                </div>
-                                <div class="col-md-6">
-                                    {{ form_row(search.maxprice) }}
-                                </div>
-                            </div>
-                        </div>
-                        <div class="widget">
-                            <h5 class="widget_title">Tags</h5>
-                            {{ form_row(search.tags) }}
-                        </div>
-                        <div class="widget">
-                            <h5 class="widget_title">Categories</h5>
-                            {{ form_row(search.categories) }}
-                        </div>
-                        <button class="btn btn-block"> Rechercher</button>
-                        <div class="text-center">
-                            <a href="{{ path("shop") }}"> Réinitialiser</a>
-                        </div>
-                        {{ form_end(search) }}
                     </div>
                 </div>
             </div>

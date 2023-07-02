@@ -25,6 +25,12 @@ class RegistrationFormType extends AbstractType
                     'placeholder' => "Votre nom d'utilisateur",
                 ],
             ])
+            ->add('tel', TextType::class, [
+                'label' => "Téléphone",
+                'attr' => [
+                    'placeholder' => "Votre numero de téléphone : Exemple +228 XX XX XX XX",
+                ],
+            ])
             ->add('firstname', TextType::class, [
                 'label' => 'Nom',
                 'attr' => [

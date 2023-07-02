@@ -1,0 +1,5 @@
+easy_admin:
+  action:
+    new: "Ajouter"
+    edit: "Modifier"
+    delete: "Supprimer"
