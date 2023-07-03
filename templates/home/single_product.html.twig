@@ -72,6 +72,13 @@
                                     {% endfor %}
                                 </li>
                                 <li>Tags: {{ product.tags }}</li>
+                                {% if(product.quantity) %}
+                                    <li>Quantité: {{ product.quantity  }}</li>
+                                {% else %}
+                                    <li>
+                                        <img src="{{ asset("assets/images/outofstock.png") }}" style="width: 80px;">
+                                    </li>
+                                {% endif%}
                             </ul>
 
                             <div class="product_share hide">

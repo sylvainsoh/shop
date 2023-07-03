@@ -7,11 +7,17 @@ use App\Services\CartService;
 use App\Services\OrderService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 class CheckoutController extends AbstractController
 {
+    public function __construct(
+        private RequestStack $requestStack,
+    )
+    {
+    }
     #[Route('/checkout', name: 'app_checkout')]
     public function index(CartService $cartService, Request $request): Response
     {
@@ -63,6 +69,9 @@ class CheckoutController extends AbstractController
 
             // Save cart
             $cart['checkout']=$data;
+            $cart['user']=$user;
+            $session = $this->requestStack->getSession();
+            $session->set('cartPayByWhatsApp', $cart);
             $reference=$orderService->saveCart($cart, $user);
 
             return $this->render('checkout/confirm.html.twig', [
@@ -74,6 +83,7 @@ class CheckoutController extends AbstractController
                 'checkout' => $form->createView()
             ]);
         }
+
         return $this->redirectToRoute('app_checkout');
     }
 }

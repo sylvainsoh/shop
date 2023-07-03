@@ -45,7 +45,7 @@ class  CartService
             // produit déja dans le panier
             if ($cart[$id] > 1) {
                 // produit existant plus d'une fois
-                $cart[$id]--;
+
             } else {
                 unset($cart[$id]);
             }

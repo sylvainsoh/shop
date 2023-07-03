@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Cart;
 use App\Entity\Newsletter;
 use App\Entity\Product;
 use App\Entity\SearchProduct;
@@ -10,6 +11,7 @@ use App\Repository\ConfigRepository;
 use App\Repository\HomeSliderRepository;
 use App\Repository\NewsletterRepository;
 use App\Repository\ProductRepository;
+use App\Services\CartService;
 use PhpParser\Node\Scalar\String_;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Bundle\MakerBundle\Str;
@@ -29,7 +31,7 @@ class HomeController extends AbstractController
     #[Route('/', name: 'app_home')]
     public function index(ProductRepository $repoProduct, HomeSliderRepository $homeSliderRepository, ConfigRepository $configRepository): Response
     {
-        $sliders = $homeSliderRepository->findOneBy(['isDisplayed' => true]);
+        $sliders = $homeSliderRepository->findBy(['isDisplayed' => true]);
 
         $products = $repoProduct->findAll();
         $productBestSeller = $repoProduct->findByIsBestSeller(1);
@@ -49,7 +51,7 @@ class HomeController extends AbstractController
             'productSpecialOffer' => $productSpecialOffer,
             'productNewArrival' => $productNewArrival,
             'productFeatured' => $productFeatured,
-            'homeSlider' => $sliders
+            'homeSlider' => $sliders[rand(0, count($sliders)-1)]
         ]);
     }
 
@@ -125,6 +127,40 @@ class HomeController extends AbstractController
 
         $whatsappUrl = 'https://api.whatsapp.com/send?phone='.$contact.'&text=' . rawurlencode('🛒 Je voudrais acheter ce produit -> ' . $productUrl);
 
+        // Redirigez l'utilisateur vers l'URL WhatsApp
+        return $this->redirect($whatsappUrl);
+    }
+
+    #[Route("/whatsapp-chat-cart/", name: 'whatsapp_chat_cart')]
+    public function startChatCart(CartService $cartService): Response
+    {
+        $session = $this->requestStack->getSession();
+        $contact=$this->requestStack->getSession()->get('config')->getContact();
+
+        $cart= $session->get('cartPayByWhatsApp');
+
+        $productData="🛒 Hello, Je voudrais passer cette commande 😊\n\nArticle(s)\n";
+        $total=0;
+        $productData.="";
+        foreach ($cart['products'] as $product){
+            $productData.=$product['product']->getNeame()." -> Qté : ".$product['quantity']."   Prix U : ".($product['product']->getPrice()/100)." Frs CFA | Lien : ".$_ENV['MAIN_DOMAIN']."/product/".$product['product']->getSlug()." \n";
+            $total+=$product['product']->getPrice()*$product['quantity'];
+        }
+        $productData.="\n";
+
+        $productData.=" \nClient : ".$cart['user']->getFullName()." \n";
+        $productData.="Contacts : 📱".$cart['user']->getTel()." | "." ✉️ ".$cart['user']->getEmail()."\n";
+
+        $totalPanier=($total+$cart['checkout']['carrier']->getPrice())/100;
+
+        $productData.="\n\nLivraison : ".($cart['checkout']['carrier']->getPrice()/100)." Frs CFA\n";
+
+        $productData.="\nTotal : ".$totalPanier." Frs CFA";
+
+        $whatsappUrl = 'https://api.whatsapp.com/send?phone='.$contact.'&text=' . rawurlencode($productData);
+
+        $cartService->deleteCart();
+        $this->addFlash('success', '🛒 Si vous avez bien envoyé votre commande par WhatsApp elle sera traitée dans les meilleurs délais, s\'il y\'a une erreur refaites de nouveau votre commande 😊');
         // Redirigez l'utilisateur vers l'URL WhatsApp
         return $this->redirect($whatsappUrl);
     }

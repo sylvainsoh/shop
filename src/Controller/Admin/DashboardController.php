@@ -15,6 +15,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractDashboardController;
 use EasyCorp\Bundle\EasyAdminBundle\Router\AdminUrlGenerator;
+use App\Entity\Config;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -53,7 +54,7 @@ class DashboardController extends AbstractDashboardController
             ->generateRelativeUrls()
             ->renderContentMaximized()
             //->renderSidebarMinimized()
-            ->setFaviconPath('/assets/images/favicon.png');
+            ->setFaviconPath('/assets/images/logo.png');
     }
 
     public function configureMenuItems(): iterable
@@ -67,6 +68,7 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToCrud('Contact', 'fa fa-envelope',Contact::class);
         yield MenuItem::linkToCrud('Slider accueil', 'fa fa-images',HomeSlider::class);
         yield MenuItem::linkToCrud('Comptes', 'fa fa-user',User::class);
+        yield MenuItem::linkToCrud('Configuration', 'fa fa-cog',Config::class);
     }
 
     public function configureAssets(): Assets

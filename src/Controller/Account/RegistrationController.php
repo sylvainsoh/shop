@@ -3,11 +3,13 @@
 namespace App\Controller\Account;
 
 use App\Entity\Config;
+use App\Entity\EmailModel;
 use App\Entity\User;
 use App\Form\RegistrationFormType;
 use App\Repository\ConfigRepository;
 use App\Repository\UserRepository;
 use App\Security\EmailVerifier;
+use App\Services\EmailSender;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -29,7 +31,7 @@ class RegistrationController extends AbstractController
     }
 
     #[Route('/register', name: 'app_register')]
-    public function register(Request $request, UserPasswordHasherInterface $userPasswordHasher, EntityManagerInterface $entityManager, ConfigRepository $configRepository): Response
+    public function register(Request $request, UserPasswordHasherInterface $userPasswordHasher, EntityManagerInterface $entityManager, ConfigRepository $configRepository, EmailSender $emailSender): Response
     {
         $config=$configRepository->findAll()[0];
         $user = new User();
@@ -48,16 +50,15 @@ class RegistrationController extends AbstractController
             $entityManager->persist($user);
             $entityManager->flush();
 
-            // generate a signed url and email it to the user
-            $this->emailVerifier->sendEmailConfirmation('app_verify_email', $user,
-                (new TemplatedEmail())
-                    ->from(new Address($config->getEmail(), '\"Contact\"'))
-                    ->to($user->getEmail())
-                    ->subject('Confirmez votre email')
-                    ->htmlTemplate('registration/confirmation_email.html.twig')
-            );
-            // do anything else you need here, like send an email
-            $this->addFlash('success', 'Votre compte a été créé vous pouvez vous connecter en cliquant sur -> connexion');
+            $email = (new EmailModel())->setTitle("Hello 👋")
+                ->setSubject("Nouveau compte créé")
+                ->setContent("<br>Un client vient de creer son compte "
+                    . "<br> Nom : " . $user->getFullName()
+                    . "<br> Email : " . $user->getEmail()
+                    . "<br> Tel : " . $user->getTel()
+                );
+            $emailSender->sendEmailByMailToAdminJet($user, $email);
+            $this->addFlash('success', '😊Votre compte a été créé vous pouvez vous connecter en cliquant sur -> connexion');
             return $this->redirectToRoute('app_home');
         }
 
