@@ -233,7 +233,7 @@
                                                     <b>{{ product.neame }}</b>
                                                 </a>
                                             </h4>
-                                            <p class="price with-discount">{{ product.price/100 }} Frs CFA</p>
+                                            <p class="price with-discount">{{ (product.price/100 ) | number_format(0, ',', '.')  }} Frs CFA</p>
                                         </div>
                                     </div>
                                 </div>
@@ -268,7 +268,7 @@
                                                     {{ product.neame }}
                                                 </a>
                                             </h4>
-                                            <p class="price with-discount">{{ product.price/100 }} Frs CFA</p>
+                                            <p class="price with-discount">{{ (product.price/100 ) | number_format(0, ',', '.') }} Frs CFA</p>
                                         </div>
                                     </div>
                                 </div>
@@ -303,7 +303,7 @@
                                                     {{ product.neame }}
                                                 </a>
                                             </h4>
-                                            <p class="price with-discount">{{ product.price/100 }} Frs CFA</p>
+                                            <p class="price with-discount">{{ (product.price/100 ) | number_format(0, ',', '.') }} Frs CFA</p>
                                         </div>
                                     </div>
                                 </div>
